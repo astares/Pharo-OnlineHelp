@@ -18,12 +18,13 @@ OHHelpRequestHandler >> helpPageWithContent: aBlock [
 	^ String streamContents: [ :stream |
 		stream << ZnConstants standardHtmlDocType.
 		stream << '<html><head><title>Pharo Help</title><link rel="shortcut icon" href="/favicon.ico"/>'.
-		stream << '<link rel="stylesheet" type="text/css" href="/files/bootstrap.min.css">'.	
+		stream << '<link rel="stylesheet" type="text/css" href="/files/css/bootstrap.min.css">'.	
+		stream <<	'
+			<script src="http://bootsnipp.com/bundles/bootstrapper/js/jquery-1.8.1.min.js"></script>
+			<script src="http://bootsnipp.com/bundles/bootstrapper/js/bootstrap.min.js"></script>'.
 		stream << '<style type="text/css"> '.
-		stream << HelpResourceLibrary helpCss.
-		stream << '</style>'.		
-		stream << '</head>'.
-		stream << '<body>'.
+		stream << HelpResourceLibrary helpCss.	
+		stream << '</style></head><body>'.
 		aBlock value: stream.
 		stream << '</body></html>' ]
 

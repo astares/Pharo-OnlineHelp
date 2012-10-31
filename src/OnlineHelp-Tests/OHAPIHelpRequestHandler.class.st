@@ -24,14 +24,16 @@ OHAPIHelpRequestHandler >> pageForClass: aClass [
 	realClass := Smalltalk at: aClass asSymbol.
 	
 	^self helpPageWithContent: [:stream |
+		stream << '<div class="container">'.
 		stream << '<h1>' << realClass name << '</h1>'.
 		realClass subclasses do: [:each |
-			stream << '<li><a href="reference?class='.
+			stream << '<li><a href="api?class='.
 			stream << each name.
 			stream <<  '">'.
 			stream << each name.
 			stream << '</a>'
-		]	
+		].
+		stream << '</div>'	
 	]
 ]
 

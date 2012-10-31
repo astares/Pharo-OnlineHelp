@@ -28,10 +28,10 @@ OHFileRequestHandler >> cssbootstrapminCssContent [
 { #category : #'request handling' }
 OHFileRequestHandler >> handleRequest: aRequest [
 	(#('files//' 'files') includes: aRequest uri path)   ifTrue: [^ZnResponse unauthorized: 'No permisson'].
-	(aRequest uri path = 'files/bootstrap.min.css') ifTrue: [^self cssResponseFor: #cssbootstrapminCssContent ].
-	(aRequest uri path = 'files/bootstrap.min.js') ifTrue: [^self javaScriptResponseFor: #jsbootstrapminJsContent ].
-	(aRequest uri path = 'files/glyphicons-halflings.png') ifTrue: [^self imagePNGResponseFor: #imgglyphiconshalflingsPngContent ].	
-	(aRequest uri path = 'files/glyphicons-halflings-white.png') ifTrue: [^self imagePNGResponseFor: #imgglyphiconshalflingswhitePngContent ].						
+	(aRequest uri path = 'files/css/bootstrap.min.css') ifTrue: [^self cssResponseFor: #cssbootstrapminCssContent ].
+	(aRequest uri path = 'files/js/bootstrap.min.js') ifTrue: [^self javaScriptResponseFor: #jsbootstrapminJsContent ].
+	(aRequest uri path = 'files/img/glyphicons-halflings.png') ifTrue: [^self imagePNGResponseFor: #imgglyphiconshalflingsPngContent ].	
+	(aRequest uri path = 'files/img/glyphicons-halflings-white.png') ifTrue: [^self imagePNGResponseFor: #imgglyphiconshalflingswhitePngContent ].						
 	^ZnResponse notFound: aRequest uri
 ]
 
