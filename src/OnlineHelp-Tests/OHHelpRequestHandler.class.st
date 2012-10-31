@@ -12,7 +12,7 @@ OHHelpRequestHandler >> handleRequest: aRequest [
 
 ]
 
-{ #category : #private }
+{ #category : #menue }
 OHHelpRequestHandler >> helpNavigationMenu [
     ^'
 			 
@@ -38,9 +38,7 @@ OHHelpRequestHandler >> helpNavigationMenu [
                       		<a id="drop2" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe"></i> Links <b class="caret"></b></a>
                       		<ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
                         		<li><a tabindex="-1" href="http://www.pharo-project.org">Homepage</a></li>		
-                        		<li><a tabindex="-1" href="https://twitter.com/pharoproject">Pharo News</a></li>
-                        		<li class="divider"></li>
-                        		<li><a tabindex="-1" href="#">Separated link</a></li>
+                        		<li><a tabindex="-1" href="https://twitter.com/pharoproject">Pharo News</a></li>                        	 
                      		</ul>
                     	</li>
 			</ul>
