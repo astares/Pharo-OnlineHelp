@@ -19,7 +19,7 @@ OHHelpRequestHandler >> helpNavigationMenu [
 		 <div id="navbar-help" class="navbar navbar-fixed-top">
               <div class="navbar-inner">
                 <div class="container" >
-                  <a class="brand" href="#">Pharo-Project</a>
+                  <a class="brand" href="#"><img src="files/img/pharo.png"> Pharo-Project</a>
                   <ul class="nav" role="navigation">
 				<li><a href="#"><i class="icon-home"></i> Home</a></li>
 				<li><a href="/api"><i class="icon-th-list"></i> API</a></li>
