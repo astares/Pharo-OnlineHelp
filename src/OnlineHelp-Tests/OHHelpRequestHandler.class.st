@@ -14,10 +14,8 @@ OHHelpRequestHandler >> handleRequest: aRequest [
 
 { #category : #menue }
 OHHelpRequestHandler >> helpNavigationMenu [
-    ^'
-			 
-		 <div id="navbar-help" class="navbar navbar-fixed-top">
-              <div class="navbar-inner">
+    ^'<div id="navbar-help" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
                 <div class="container" >
                   <a class="brand" href="#"><img src="files/img/pharo.png"> Pharo-Project</a>
                   <ul class="nav" role="navigation">
@@ -58,8 +56,7 @@ OHHelpRequestHandler >> helpNavigationMenu [
                   </ul>                   
                 </div>
               </div>
-            </div>
-		'.
+            </div>'.
 ]
 
 { #category : #private }
