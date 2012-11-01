@@ -20,7 +20,7 @@ OHHelpRequestHandler >> helpNavigationMenu [
                   <a class="brand" href="#"><img src="files/img/pharo.png"> Pharo-Project</a>
                   <ul class="nav" role="navigation">
 				<li><a href="/"><i class="icon-home"></i> Home</a></li>
-				<li><a href="/api"><i class="icon-th-list"></i> API</a></li>
+				<li><a href="/intro"><i class="icon-ok-circle"></i> Intro</a></li>				
 				<li class="dropdown">
                       		<a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-book"></i> Books<b class="caret"></b></a>
                       		<ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
@@ -30,7 +30,8 @@ OHHelpRequestHandler >> helpNavigationMenu [
 			      		<li><a tabindex="-1" href="http://book.pharo-project.org">Collaborative Active Book</a></li>                        		 						<li class="divider"></li>
 			      		<li><a tabindex="-1" href="http://stephane.ducasse.free.fr/FreeBooks.html">Free Smalltalk Books</a></li>                        		 
                      		</ul>
-                    	</li>				
+                    	</li>		
+				<li><a href="/api"><i class="icon-th-list"></i> API</a></li>					
 				<li><a href="http://www.pharocasts.com/"><i class="icon-film"></i> Pharocasts</a></li>	
                     	<li class="dropdown">
                       		<a id="drop2" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe"></i> Links <b class="caret"></b></a>
