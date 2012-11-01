@@ -68,8 +68,8 @@ OHHelpRequestHandler >> helpPageWithContent: aBlock [
 		stream << '<html><head><title>Pharo Help</title><link rel="shortcut icon" href="/favicon.ico"/>'.
 		stream << '<link rel="stylesheet" type="text/css" href="/files/css/bootstrap.min.css">'.	
 		stream <<	'
-			<script src="http://bootsnipp.com/bundles/bootstrapper/js/jquery-1.8.1.min.js"></script>
-			<script src="http://bootsnipp.com/bundles/bootstrapper/js/bootstrap.min.js"></script>'.
+			<script src="files/js/jquery-1.8.1.min.js"></script>
+			<script src="files/js/bootstrap.min.js"></script>'.
 		stream << '<style type="text/css"> '.
 		stream << HelpResourceLibrary helpCss.	
 		stream << '</style></head><body>'.
