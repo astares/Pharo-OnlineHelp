@@ -7,7 +7,7 @@ Class {
 { #category : #testing }
 HelpServerTests >> testPortAvailable [
 
-	self assert: HelpServer onlineHelpPort isInteger 
+	self assert: HelpServer port isInteger 
 	
 
 ]
@@ -19,7 +19,7 @@ HelpServerTests >> testServerAccessibility [
 	server := HelpServer server.
 	self 
 		assert: server notNil;
-		assert: server port = HelpServer onlineHelpPort;
+		assert: server port = HelpServer port;
 		assert: server isRunning = HelpServer isRunning 
 		
 	

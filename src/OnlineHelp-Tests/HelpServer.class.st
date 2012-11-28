@@ -5,10 +5,18 @@ Class {
 		'prefixMap'
 	],
 	#classVars : [
-		'OnlineHelpPort'
+		'Port',
+		'Server'
 	],
 	#category : #'OnlineHelp-Core'
 }
+
+{ #category : #accessing }
+HelpServer class >> defaultPort [
+	"Returns the default port "
+	
+	^8080
+]
 
 { #category : #private }
 HelpServer class >> dispatcherClass [
@@ -17,31 +25,16 @@ HelpServer class >> dispatcherClass [
 	^HelpRequestDispatcher 
 ]
 
+{ #category : #private }
+HelpServer class >> initServer [
+	^ZnServer defaultOn: self defaultPort
+]
+
 { #category : #testing }
 HelpServer class >> isRunning [
 	"Return true if the server is running"
 	 
 	^self server isRunning
-]
-
-{ #category : #settings }
-HelpServer class >> onlineHelpPort [
-	"Return the port to use for the online help, an Integer"
-	
-	^OnlineHelpPort ifNil: [ OnlineHelpPort := 8080 ]
-]
-
-{ #category : #settings }
-HelpServer class >> onlineHelpPort: aPort [
-	"Sets the port to use for the online help. If the server is already running on
-	  a different port then it is restarted."
-	
-	|requiresRestart|
-	requiresRestart := OnlineHelpPort = aPort and: [ self isRunning ].
-	requiresRestart ifTrue: [self stop].
-	OnlineHelpPort := aPort.
-	requiresRestart ifTrue: [self start].
-	
 ]
 
 { #category : #settings }
@@ -54,17 +47,38 @@ HelpServer class >> onlineHelpSettingsOn: aBuilder [
 		description: 'All online help related settings' translated;
 		noOrdering;
 		with: [ 			 
-			(aBuilder setting: #onlineHelpPort)
+			(aBuilder setting: #port)
 					label: 'HTTP Port' translated;
 					description: 'The HTTP port for the online help' translated.
 	]
+]
+
+{ #category : #settings }
+HelpServer class >> port [
+	"Return the port to use for the online help, an Integer"
+	
+	^Port ifNil: [ Port := 8080 ]
+]
+
+{ #category : #settings }
+HelpServer class >> port: aPort [
+	"Sets the port to use for the online help. If the server is already running on
+	  a different port then it is restarted."
+	
+	|requiresRestart|
+	requiresRestart := Port = aPort and: [ self isRunning ].
+	requiresRestart ifTrue: [self stop].
+	Port := aPort.
+	requiresRestart ifTrue: [self start].
+	
 ]
 
 { #category : #accessing }
 HelpServer class >> server [
 	"Return the server instance"
 	
-	^(ZnServer defaultOn: 8080) 
+	Server ifNil: [ Server := self initServer ].
+	^Server
 ]
 
 { #category : #running }
