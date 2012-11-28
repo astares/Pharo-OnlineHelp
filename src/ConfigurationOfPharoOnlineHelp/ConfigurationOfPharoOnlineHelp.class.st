@@ -102,6 +102,11 @@ ConfigurationOfPharoOnlineHelp >> baseline10: spec [
 
 ]
 
+{ #category : #doIts }
+ConfigurationOfPharoOnlineHelp >> postloadForCore: loader package: packageSpec [
+	(Smalltalk at: #HelpServerPanel) open
+]
+
 { #category : #accessing }
 ConfigurationOfPharoOnlineHelp >> project [
 
@@ -131,6 +136,7 @@ ConfigurationOfPharoOnlineHelp >> version10: spec [
 		spec description: 'first release'. 
 		spec author: 'Torsten Bergmann'.
 		spec timestamp: '11/05/2012 22:00'.
-		spec package: 'OnlineHelp' with: 'OnlineHelp-tbn.15'.
+		spec package: 'OnlineHelp' with: 'OnlineHelp-TorstenBergmann.16'.
+		spec postLoadDoIt: #postloadForCore:package:
 	]
 ]
