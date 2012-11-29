@@ -27,8 +27,11 @@ OHAPIHelpRequestHandler >> prefix [
 { #category : #rendering }
 OHAPIHelpRequestHandler >> renderAction: anAction for: aClass on: stream [
 
-	anAction = 'comment' ifTrue: [ self renderCommentFor: aClass on: stream].
-	anAction = 'instance' ifTrue: [ self renderInstanceSideFor: aClass on: stream].
+	anAction = 'comment' ifTrue: [ ^self renderCommentFor: aClass on: stream].
+	anAction = 'instance' ifTrue: [ ^self renderInstanceSideFor: aClass on: stream].
+	anAction = 'class' ifTrue: [ ^self renderClassSideFor: aClass on: stream].
+	
+	
 	
 ]
 
@@ -63,6 +66,14 @@ OHAPIHelpRequestHandler >> renderActionNavigationFor: realClass onStream: stream
 ]
 
 { #category : #rendering }
+OHAPIHelpRequestHandler >> renderClassSideFor: aClass on: stream [
+ 
+	self renderMethods: aClass class methods on: stream
+               
+             
+]
+
+{ #category : #rendering }
 OHAPIHelpRequestHandler >> renderCommentFor: aClass on: stream [
 	stream << '<pre>'.
 	stream << aClass comment.
@@ -71,18 +82,8 @@ OHAPIHelpRequestHandler >> renderCommentFor: aClass on: stream [
 
 { #category : #rendering }
 OHAPIHelpRequestHandler >> renderInstanceSideFor: aClass on: stream [
-
-	stream << '<div class="accordion">'.
-	stream << '<div class="accordion-group">'.
-	aClass methods do: [:each |
-		self renderMethod: each on: stream.	
-	
-	 ].
-              
-	
-	stream << '</div>'.
-	stream << '</div>'.
-		
+ 
+	self renderMethods: aClass methods on: stream
                
              
 ]
@@ -91,7 +92,7 @@ OHAPIHelpRequestHandler >> renderInstanceSideFor: aClass on: stream [
 OHAPIHelpRequestHandler >> renderMethod: each on: stream [
 
  	|selector|
-	selector := each selector asString copyReplaceAll: ':' with: ''.
+	selector := each selector asString copyReplaceAll: ':' with: 'P'.
  	stream << '<div class="accordion-heading">'.
 		stream << '<a class="accordion-toggle" data-toggle="collapse" href="#' << selector << '">'.
 		stream << each selector asString.
@@ -99,11 +100,28 @@ OHAPIHelpRequestHandler >> renderMethod: each on: stream [
 	stream << '</div>'.
 	stream << ' 
                   <div id="' << selector << '" class="accordion-body collapse ">
-                    <div class="accordion-inner">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably h heard of them accusamus labore sustainable VHS.
+                    <div class="accordion-inner"><pre>'.
+	each comment isNil 
+		ifTrue: [ stream << ' - UNCOMMENTED - ']
+		ifFalse: [ stream << each comment ].	
+   	stream << '                    </pre>
                     </div>
                   </div>
 	'.
+]
+
+{ #category : #rendering }
+OHAPIHelpRequestHandler >> renderMethods: methods on: stream [
+ 
+	stream << '<div class="accordion">'.
+	stream << '<div class="accordion-group">'.
+	(methods sort: [:a :b | a selector asString < b selector asString ]) do: [:each |
+		self renderMethod: each on: stream ].
+	stream << '</div>'.
+	stream << '</div>'.
+		
+               
+             
 ]
 
 { #category : #rendering }
@@ -120,7 +138,7 @@ OHAPIHelpRequestHandler >> renderNavigationFor: realClass onStream: stream actio
 				"write subclasses if available"			 
 				realClass subclasses notEmpty ifTrue: [
 					stream << '<li class="nav-header">Subclasses</li>'.				
-					realClass subclasses do: [:each | self writeLinkTo: each on: stream action: anAction ]].		
+					(realClass subclasses sort:   [:a :b | a name < b name ]) do: [:each | self writeLinkTo: each on: stream action: anAction ]].		
 				        
 		stream << '</ul>
 				</div>			
