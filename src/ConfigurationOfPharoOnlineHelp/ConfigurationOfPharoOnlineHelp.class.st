@@ -136,7 +136,7 @@ ConfigurationOfPharoOnlineHelp >> version10: spec [
 		spec description: 'first release'. 
 		spec author: 'Torsten Bergmann'.
 		spec timestamp: '11/05/2012 22:00'.
-		spec package: 'OnlineHelp' with: 'OnlineHelp-TorstenBergmann.18'.
+		spec package: 'OnlineHelp' with: 'OnlineHelp-TorstenBergmann.20'.
 		spec postLoadDoIt: #postloadForCore:package:
 	]
 ]
