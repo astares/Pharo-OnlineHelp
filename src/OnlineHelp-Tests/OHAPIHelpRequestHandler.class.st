@@ -19,6 +19,27 @@ OHAPIHelpRequestHandler >> handleRequest: aRequest [
 ]
 
 { #category : #'request handling' }
+OHAPIHelpRequestHandler >> navigationFor: realClass onStream: stream. [
+		
+	stream << '<div class="sidebar-nav">
+						<div class="well" style="padding: 8px 0;">
+							<ul class="nav nav-list">'.
+				"write superclass if available"
+				realClass superclass notNil ifTrue: [
+					stream << '<li class="nav-header">Superclass</li>'.
+					self writeLinkTo: realClass superclass on: stream ].	
+
+				"write subclasses if available"			 
+				realClass subclasses notEmpty ifTrue: [
+					stream << '<li class="nav-header">Subclasses</li>'.				
+					realClass subclasses do: [:each | self writeLinkTo: each on: stream ]].		
+				        
+		stream << '</ul>
+				</div>			
+			 </div>'.
+]
+
+{ #category : #'request handling' }
 OHAPIHelpRequestHandler >> pageForClass: aClass [
 	| realClass |
 	realClass := Smalltalk at: aClass asSymbol.
@@ -29,25 +50,17 @@ OHAPIHelpRequestHandler >> pageForClass: aClass [
 		<br/>
 		<div class="container" style="padding-top: 40px;">'.
 		stream << '<h1>' << realClass name << '</h1>'.
-		stream << '<div class="sidebar-nav">
-						<div class="well" style="width:300px; padding: 8px 0;">
-							<ul class="nav nav-list">'.
-		"write superclass if available"
-		realClass superclass notNil ifTrue: [
-			stream << '<li class="nav-header">Superclass</li>'.
-			self writeLinkTo: realClass superclass on: stream.
-		].	
-
-		"write subclasses if available"			 
-		realClass subclasses notEmpty ifTrue: [
-			stream << '<li class="nav-header">Subclasses</li>'.				
-			realClass subclasses do: [:each | self writeLinkTo: each on: stream ]].		
-				        
-		stream << '
-			   </ul>
-			</div>
-		   </div>
-		</div>'	
+		stream << '<div class="row">'.
+			"left side navigation"
+		 	stream << '<div class="span3">'.
+				self navigationFor: realClass onStream: stream.
+			stream << '</div>'.
+			"right side"
+		 	stream << '<div class="span9"> <pre>'.
+				 stream << realClass comment.
+			stream << '</pre></div>'.						
+		stream << '</div>'.
+			
 	]
 ]
 
