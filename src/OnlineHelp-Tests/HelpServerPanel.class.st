@@ -4,6 +4,15 @@ Class {
 	#category : #'OnlineHelp-Core'
 }
 
+{ #category : #'world menu' }
+HelpServerPanel class >> menuCommandOn: aBuilder [ 
+	<worldMenu> 
+	(aBuilder item: #'Help Server')
+		parent: #Help;
+		action: [self open]; 
+		icon:  UITheme current smallObjectCatalogIcon
+]
+
 { #category : #'instance creation' }
 HelpServerPanel class >> open [
 	"Open within a window"
