@@ -75,7 +75,8 @@ OHHelpRequestHandler >> helpPageWithContent: aBlock [
 		stream << '<link rel="stylesheet" type="text/css" href="/files/css/bootstrap.min.css">'.	
 		stream <<	'
 			<script src="files/js/jquery-1.8.1.min.js"></script>
-			<script src="files/js/bootstrap.min.js"></script>'.
+			<script src="files/js/bootstrap.min.js"></script>
+			<script src="files/js/MarkdownConverter.js"></script>'.			
 		stream << '<style type="text/css"> '.
 		stream << HelpResourceLibrary helpCss.	
 		stream << '</style></head><body>'.
