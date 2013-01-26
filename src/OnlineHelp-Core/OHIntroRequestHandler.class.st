@@ -49,6 +49,26 @@ OHIntroRequestHandler >> generateLessonPage2 [
 ]
 
 { #category : #'request handling' }
+OHIntroRequestHandler >> generateLessonPage3 [
+	 ^self helpPageWithContent: [:stream |		
+		stream << self helpNavigationMenu.		
+		stream << '<br/><div class="container" style="padding-top: 40px;">'.
+		
+			stream << '<div class="row">'.
+				"left side navigation"
+		 		stream << '<div class="span3">'.
+					self renderAvailableTutorialsOn: stream.
+				stream << '</div>'.
+				"right side"
+		 		stream << '<div class="span9">'.
+					self renderAvailableTutorialsAndLessonsOn: stream.
+				stream << '</div>'.						
+			stream << '</div>'.
+		
+		stream << '</div>']
+]
+
+{ #category : #'request handling' }
 OHIntroRequestHandler >> handleRequest: aRequest [
 	^self htmlResponse: self generateLessonPage 
 ]
@@ -61,9 +81,11 @@ OHIntroRequestHandler >> prefix [
 { #category : #'request handling' }
 OHIntroRequestHandler >> renderAvailableTutorialsAndLessonsOn: stream [
 
-	self tutorialsToRender do: [ :tutorial |
- 		stream << '<h2>' << tutorial title << '</h2>'.
-		stream << '<h3 class="muted">' << tutorial description << '</h3><br/>']
+	self tutorialsToRender do: [ :tutorial |	 
+ 		stream << '<h2><a name="' << (ZnResourceMetaUtils decodePercent: tutorial title).
+		stream << '"></a>' << tutorial title << '</h2>'.
+		stream << '<h4 class="muted">' << tutorial description << '</h4><br/>'
+	]
 ]
 
 { #category : #'request handling' }
@@ -75,14 +97,12 @@ OHIntroRequestHandler >> renderAvailableTutorialsOn: stream [
 								<li class="nav-header">Tutorials</li>'.
 
 	self tutorialsToRender do: [ :tutorial |
-		
+	 
 		stream << '<li><a href="#'.
-		stream << tutorial title.
+		stream << (ZnResourceMetaUtils decodePercent: tutorial title).
 		stream <<  '">'.
 		stream << tutorial title.
-		stream << '</a></li>'
-	
-	 ].					
+		stream << '</a></li>'].					
 					
 	stream << '</ul>
 				</div>			
