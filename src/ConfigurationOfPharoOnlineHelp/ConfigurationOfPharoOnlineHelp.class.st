@@ -124,7 +124,7 @@ ConfigurationOfPharoOnlineHelp >> project [
 ConfigurationOfPharoOnlineHelp >> stable: spec [
 	<symbolicVersion: #'stable'>
 
-	spec for: #'common' version: '1.0'.
+	spec for: #'common' version: '1.1'.
 ]
 
 { #category : #versions }
@@ -137,6 +137,20 @@ ConfigurationOfPharoOnlineHelp >> version10: spec [
 		spec author: 'Torsten Bergmann'.
 		spec timestamp: '11/05/2012 22:00'.
 		spec package: 'OnlineHelp' with: 'OnlineHelp-TorstenBergmann.20'.
+		spec postLoadDoIt: #postloadForCore:package:
+	]
+]
+
+{ #category : #versions }
+ConfigurationOfPharoOnlineHelp >> version11: spec [
+	<version: '1.1' imports: #('1.0-baseline')>
+	
+	spec for: #common do: [
+		spec blessing: #'development'.	 
+		spec description: 'first release'. 
+		spec author: 'Torsten Bergmann'.
+		spec timestamp: '01/26/2013 22:00'.
+		spec package: 'OnlineHelp' with: 'OnlineHelp-tbn.27'.
 		spec postLoadDoIt: #postloadForCore:package:
 	]
 ]
