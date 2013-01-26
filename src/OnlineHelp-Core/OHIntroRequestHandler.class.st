@@ -10,8 +10,17 @@ OHIntroRequestHandler >> generateLessonPage [
 		stream << self helpNavigationMenu.		
 		stream << '<br/><div class="container" style="padding-top: 40px;">'.
 		
-		self renderAvailableTutorialsOn: stream.
-					 
+			stream << '<div class="row">'.
+				"left side navigation"
+		 		stream << '<div class="span3">'.
+					self renderAvailableTutorialsOn: stream.
+				stream << '</div>'.
+				"right side"
+		 		stream << '<div class="span9">'.
+					self renderAvailableTutorialsAndLessonsOn: stream.
+				stream << '</div>'.						
+			stream << '</div>'.
+		
 		stream << '</div>']
 ]
 
@@ -50,11 +59,40 @@ OHIntroRequestHandler >> prefix [
 ]
 
 { #category : #'request handling' }
+OHIntroRequestHandler >> renderAvailableTutorialsAndLessonsOn: stream [
+
+	self tutorialsToRender do: [ :tutorial |
+ 		stream << '<h2>' << tutorial title << '</h2>'.
+		stream << '<h3 class="muted">' << tutorial description << '</h3><br/>']
+]
+
+{ #category : #'request handling' }
 OHIntroRequestHandler >> renderAvailableTutorialsOn: stream [
 
-	OHTutorialBuilder availableTutorials  do: [ :tutorial |
- 
-		stream << '<h1>' << tutorial title << '</h1>'.
-		stream << '<h2 class="muted">' << tutorial description << '</h2><br/>'			
-	 ]
+	stream << '<div class="sidebar-nav">
+						<div class="well" style="padding: 8px 0;">
+							<ul class="nav nav-list">
+								<li class="nav-header">Tutorials</li>'.
+
+	self tutorialsToRender do: [ :tutorial |
+		
+		stream << '<li><a href="#'.
+		stream << tutorial title.
+		stream <<  '">'.
+		stream << tutorial title.
+		stream << '</a></li>'
+	
+	 ].					
+					
+	stream << '</ul>
+				</div>			
+			 </div>'.
+
+
+	
+]
+
+{ #category : #accessing }
+OHIntroRequestHandler >> tutorialsToRender [
+	^OHTutorialBuilder availableTutorials
 ]
