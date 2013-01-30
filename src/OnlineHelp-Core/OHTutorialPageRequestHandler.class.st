@@ -18,7 +18,7 @@ OHTutorialPageRequestHandler >> encodeFromLink: aString [
 	^ZnResourceMetaUtils encodePercent: aString withEncoding: 'utf-8'
 ]
 
-{ #category : #'rendering-common' }
+{ #category : #rendering }
 OHTutorialPageRequestHandler >> generateAllTutorialsPage [
 	 ^self helpPageWithContent: [:stream |		
 		stream << self helpNavigationMenu.		
@@ -38,7 +38,27 @@ OHTutorialPageRequestHandler >> generateAllTutorialsPage [
 		stream << '</div>']
 ]
 
-{ #category : #'rendering-common' }
+{ #category : #rendering }
+OHTutorialPageRequestHandler >> generatePage: pageNumber forLesson: aLesson tutorial: aTutorial [ 
+	^self helpPageWithContent: [:stream |		
+		stream << self helpNavigationMenu.		
+		stream << '<br/><div class="container" style="padding-top: 40px;">'.
+		
+			stream << '<div class="row">'.
+				"left side navigation"
+		 		stream << '<div class="span3">'.
+					self renderTutorialSelectionOn: stream.
+				stream << '</div>'.
+				"right side"
+		 		stream << '<div class="span9">'.
+					self renderPage: pageNumber forLesson: aLesson tutorial: aTutorial on: stream.
+				stream << '</div>'.						
+			stream << '</div>'.
+		
+		stream << '</div>']
+]
+
+{ #category : #rendering }
 OHTutorialPageRequestHandler >> generatePageForLesson: aLesson tutorial: aTutorial [ 
 	 ^self helpPageWithContent: [:stream |		
 		stream << self helpNavigationMenu.		
@@ -58,7 +78,7 @@ OHTutorialPageRequestHandler >> generatePageForLesson: aLesson tutorial: aTutori
 		stream << '</div>']
 ]
 
-{ #category : #'rendering-common' }
+{ #category : #rendering }
 OHTutorialPageRequestHandler >> generatePageForTutorial: aTutorial [
 	 ^self helpPageWithContent: [:stream |		
 		stream << self helpNavigationMenu.		
@@ -78,26 +98,6 @@ OHTutorialPageRequestHandler >> generatePageForTutorial: aTutorial [
 		stream << '</div>']
 ]
 
-{ #category : #markdown }
-OHTutorialPageRequestHandler >> generateTutorialPage [
-	 ^self helpPageWithContent: [:stream |		
-		stream << self helpNavigationMenu.		
-		stream << ' <div class="container" style="padding-top: 80px;">	
-			<div id="contents" />EMPTY</div></div>
-			<script type="text/javascript">
-			 var converter1 = new Markdown.Converter();
-                   var result = converter1.makeHtml("'.
-	self markdown string linesDo: [:each | 
-		stream << (each copyReplaceAll: '"' with: '\"').
-		stream << '\n'
-		].
-		stream << '");		 	 	
-			 document.getElementById("contents").innerHTML = result;
-        </script>'
-		
-	]
-]
-
 { #category : #'request handling' }
 OHTutorialPageRequestHandler >> handleRequest: aRequest [
 	|  action tutorial lesson page |
@@ -108,33 +108,27 @@ OHTutorialPageRequestHandler >> handleRequest: aRequest [
 							 ifAbsent: [^self htmlResponse: (self generatePageForTutorial: tutorial asSymbol) ].	
 	page := aRequest uri queryAt: 'page' 
 							 ifAbsent: [^self htmlResponse: (self generatePageForLesson: lesson asSymbol tutorial: tutorial asSymbol) ].	
-	^self htmlResponse: self generateTutorialPage 
+								self halt.
+	^self htmlResponse: (self generatePage: page asNumber forLesson: lesson asSymbol tutorial: tutorial asSymbol)
 ]
 
-{ #category : #markdown }
-OHTutorialPageRequestHandler >> markdown [
-	^'A First Level Header
-====================
+{ #category : #rendering }
+OHTutorialPageRequestHandler >> markdown: aString on: stream [
 
-A Second Level Header
----------------------
-
-Now is the time for all good men to come to
-the aid of their country. This is just a
-regular paragraph.
-
-The quick brown fox jumped over the lazy
-dog''s back.
-
-### Header 3
-
-> This is a blockquote.
-> 
-> This is the second paragraph in the blockquote.
->
-> ## This is an H2 in a blockquote
-'
-
+	stream << '<div class="container">	
+			<div id="contents" />EMPTY</div></div>
+			<script type="text/javascript">
+			 var converter1 = new Markdown.Converter();
+                   var result = converter1.makeHtml("'.
+	aString linesDo: [:each | 
+		stream << (each copyReplaceAll: '"' with: '\"').
+		stream << '\n'
+		].
+		stream << '");		 	 	
+			 document.getElementById("contents").innerHTML = result;
+        </script>'
+		
+	 
 ]
 
 { #category : #defaults }
@@ -158,7 +152,7 @@ OHTutorialPageRequestHandler >> renderAvailableTutorialsOn: stream [
 		stream << '<h4 class="muted">&nbsp;&nbsp;' << tutorial description << '</h4>' ]
 ]
 
-{ #category : #'rendering-common' }
+{ #category : #'rendering-lessons' }
 OHTutorialPageRequestHandler >> renderLessonOverview: aLesson forTutorial: aTutorial on: stream [
 	|tutorial lesson |
 	tutorial := self tutorialNamed: aTutorial.
@@ -170,7 +164,17 @@ OHTutorialPageRequestHandler >> renderLessonOverview: aLesson forTutorial: aTuto
 					<li><a href="#">' << lesson title asString << '</a></li>
 			</ul>'.
 	
-	 
+	 self renderPage: 1 forLesson: aLesson tutorial: aTutorial on: stream
+]
+
+{ #category : #'rendering-pages' }
+OHTutorialPageRequestHandler >> renderPage: pageNumber forLesson: aLesson tutorial: aTutorial on: stream [
+	|tutorial lesson content |
+	tutorial := self tutorialNamed: aTutorial.
+	lesson := tutorial lessonNamed: aLesson.
+	content := lesson contentForPage: pageNumber.
+	self markdown: content on: stream
+	
 ]
 
 { #category : #'rendering-tutorials' }
