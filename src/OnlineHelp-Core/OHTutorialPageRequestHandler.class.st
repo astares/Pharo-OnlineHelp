@@ -108,7 +108,7 @@ OHTutorialPageRequestHandler >> handleRequest: aRequest [
 							 ifAbsent: [^self htmlResponse: (self generatePageForTutorial: tutorial asSymbol) ].	
 	page := aRequest uri queryAt: 'page' 
 							 ifAbsent: [^self htmlResponse: (self generatePageForLesson: lesson asSymbol tutorial: tutorial asSymbol) ].	
-								self halt.
+								 
 	^self htmlResponse: (self generatePage: page asNumber forLesson: lesson asSymbol tutorial: tutorial asSymbol)
 ]
 
@@ -173,6 +173,18 @@ OHTutorialPageRequestHandler >> renderPage: pageNumber forLesson: aLesson tutori
 	tutorial := self tutorialNamed: aTutorial.
 	lesson := tutorial lessonNamed: aLesson.
 	content := lesson contentForPage: pageNumber.
+	
+	stream << '<div class="pagination .pagination-mini"><ul>'.
+	pageNumber > 1 ifTrue: [ stream <<   '<li><a href="#">&lt;&lt;</a></li>' ].
+
+	1 to: lesson numberOfPages do: [: page | stream << '<li><a href="#"> ' << page asString << '  </a></li>'].
+
+	pageNumber < lesson numberOfPages ifTrue: [ stream << '<li><a href="#">&gt;&gt;</a></li>' ].
+
+
+	
+  	stream << '</ul></div>'.
+	
 	self markdown: content on: stream
 	
 ]
