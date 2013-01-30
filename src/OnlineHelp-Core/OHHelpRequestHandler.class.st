@@ -20,7 +20,7 @@ OHHelpRequestHandler >> helpNavigationMenu [
                   <a class="brand" href="http://pharo-project.org"><img src="files/img/pharo.png"> Pharo-Project</a>
                   <ul class="nav" role="navigation">
 				<li><a href="/"><i class="icon-home"></i> Home</a></li>
-				<li><a href="/intro"><i class="icon-ok-circle"></i> Intro</a></li>				
+				<li><a href="/tutorials"><i class="icon-ok-circle"></i> Intro</a></li>				
 				<li class="dropdown">
                       		<a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-book"></i> Books<b class="caret"></b></a>
                       		<ul class="dropdown-menu" role="menu" aria-labelledby="drop1">

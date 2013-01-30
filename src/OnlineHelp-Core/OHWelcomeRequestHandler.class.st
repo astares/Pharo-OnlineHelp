@@ -14,7 +14,7 @@ OHWelcomeRequestHandler >> generateHelpPage [
 			<div class="hero-unit">
             		<h1>Welcome</h1>
             		<p>Welcome to Pharo-Project. This online help should give you an introduction on how to use the Pharo open Source Smalltalk system.</p>
-            		<p><a href="/intro" class="btn btn-primary btn-large">Learn more »</a></p>
+            		<p><a href="/tutorials" class="btn btn-primary btn-large">Learn more »</a></p>
           		</div>
 		</div>']
 ]

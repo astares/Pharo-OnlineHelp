@@ -1,9 +1,6 @@
 Class {
 	#name : #HelpServer,
 	#superclass : #Object,
-	#instVars : [
-		'prefixMap'
-	],
 	#classVars : [
 		'Port',
 		'Server'

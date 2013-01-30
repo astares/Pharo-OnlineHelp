@@ -2,7 +2,8 @@ Class {
 	#name : #OHTutorialBuilder,
 	#superclass : #Object,
 	#instVars : [
-		'tutorials'
+		'tutorials',
+		'tutorialMap'
 	],
 	#category : #'OnlineHelp-Core-Engine'
 }
@@ -20,13 +21,31 @@ OHTutorialBuilder class >> availableTutorials [
 	  always rebuild. We can later also add a ranking
 	  mechanism so important tutorials show up higher"
 
+	^self getInstance tutorials  
+]
+
+{ #category : #private }
+OHTutorialBuilder class >> getInstance [
+	"Return a new builder This can later
+	  be optimized by caching if necessary - currently 
+	  always rebuild. We can later also add a ranking
+	  mechanism so important tutorials show up higher"
+
 	|builder|
 	builder := (self new).
 	builder build.
-	^builder tutorials values
+	^builder 
 ]
 
 { #category : #accessing }
+OHTutorialBuilder class >> tutorialWithName: aName [
+	"Returns a tutorial with the given name"
+
+	^self getInstance tutorial: aName
+	
+]
+
+{ #category : #building }
 OHTutorialBuilder >> build [
 	self class allTutorialDescriptions do: [:each |
 		each methodClass theNonMetaClass perform: each selector with: self
@@ -36,20 +55,25 @@ OHTutorialBuilder >> build [
 { #category : #'initialize-release' }
 OHTutorialBuilder >> initialize [
 	super initialize.
-	tutorials := Dictionary new.
+	tutorialMap := Dictionary new.
 ]
 
 { #category : #accessing }
-OHTutorialBuilder >> lesson: aByteSymbol [ 
-	^OHTutorialLesson new
+OHTutorialBuilder >> lesson: aSymbol [ 
+	^OHTutorialLesson titled: aSymbol
 ]
 
-{ #category : #building }
+{ #category : #accessing }
 OHTutorialBuilder >> tutorial: aSymbol [ 
-	^self tutorials at: aSymbol ifAbsentPut: OHTutorial new 
+	^self tutorialMap at: aSymbol ifAbsentPut: (OHTutorial titled: aSymbol)
 ]
 
-{ #category : #building }
+{ #category : #'private accessing' }
+OHTutorialBuilder >> tutorialMap [
+	^tutorialMap
+]
+
+{ #category : #accessing }
 OHTutorialBuilder >> tutorials [
-	^tutorials
+	^self tutorialMap values
 ]

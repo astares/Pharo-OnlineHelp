@@ -5,6 +5,26 @@ Class {
 }
 
 { #category : #'request handling' }
+OHIntroRequestHandler >> generateAllTutorialsPage [
+	 ^self helpPageWithContent: [:stream |		
+		stream << self helpNavigationMenu.		
+		stream << '<br/><div class="container" style="padding-top: 40px;">'.
+		
+			stream << '<div class="row">'.
+				"left side navigation"
+		 		stream << '<div class="span3">'.
+					self renderAvailableTutorialsOn: stream.
+				stream << '</div>'.
+				"right side"
+		 		stream << '<div class="span9">'.
+					self renderAvailableTutorialsAndLessonsOn: stream.
+				stream << '</div>'.						
+			stream << '</div>'.
+		
+		stream << '</div>']
+]
+
+{ #category : #obsolete }
 OHIntroRequestHandler >> generateLessonPage [
 	 ^self helpPageWithContent: [:stream |		
 		stream << self helpNavigationMenu.		
@@ -24,7 +44,7 @@ OHIntroRequestHandler >> generateLessonPage [
 		stream << '</div>']
 ]
 
-{ #category : #'request handling' }
+{ #category : #obsolete }
 OHIntroRequestHandler >> generateLessonPage2 [
 	 ^self helpPageWithContent: [:stream |		
 		stream << self helpNavigationMenu.		
@@ -48,7 +68,7 @@ OHIntroRequestHandler >> generateLessonPage2 [
 		</div>']
 ]
 
-{ #category : #'request handling' }
+{ #category : #obsolete }
 OHIntroRequestHandler >> generateLessonPage3 [
 	 ^self helpPageWithContent: [:stream |		
 		stream << self helpNavigationMenu.		
@@ -70,22 +90,23 @@ OHIntroRequestHandler >> generateLessonPage3 [
 
 { #category : #'request handling' }
 OHIntroRequestHandler >> handleRequest: aRequest [
-	^self htmlResponse: self generateLessonPage 
+	^self htmlResponse: self generateAllTutorialsPage 
 ]
 
 { #category : #defaults }
 OHIntroRequestHandler >> prefix [
-	^'intro'
+	^'oldintro'
 ]
 
 { #category : #'request handling' }
 OHIntroRequestHandler >> renderAvailableTutorialsAndLessonsOn: stream [
 
 	self tutorialsToRender do: [ :tutorial |	 
- 		stream << '<h2><a name="' << (ZnResourceMetaUtils decodePercent: tutorial title).
-		stream << '"></a>' << tutorial title << '</h2>'.
-		stream << '<h4 class="muted">' << tutorial description << '</h4><br/>'
-	]
+ 		stream << '<h3><a name="' << (ZnResourceMetaUtils decodePercent: tutorial title).
+		stream << '"></a>' << tutorial title << '</h3>'.
+		stream << '<h4 class="muted">' << tutorial description << '</h4>'.
+		tutorial lessons do: [:lesson | 
+			self renderLesson: lesson fromTutorial: tutorial on: stream ]]
 ]
 
 { #category : #'request handling' }
@@ -112,7 +133,9 @@ OHIntroRequestHandler >> renderAvailableTutorialsOn: stream [
 	
 ]
 
-{ #category : #accessing }
-OHIntroRequestHandler >> tutorialsToRender [
-	^OHTutorialBuilder availableTutorials
+{ #category : #'request handling' }
+OHIntroRequestHandler >> renderLesson: lesson fromTutorial: tutorial on: stream [ 
+
+	stream << '<li>'.
+	stream << lesson title.
 ]

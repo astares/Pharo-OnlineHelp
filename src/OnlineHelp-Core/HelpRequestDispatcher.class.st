@@ -17,6 +17,7 @@ HelpRequestDispatcher >> buildDispatchMap [
 		map: 'favicon.ico' to: #favicon:.
 		
 	OHHelpRequestHandler allSubclassesDo: [:each |
+		Transcript show: each printString.
 		handler := each new.
 		self map: handler prefix  to: handler
 	]

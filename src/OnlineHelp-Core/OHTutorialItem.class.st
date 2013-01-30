@@ -8,6 +8,13 @@ Class {
 	#category : #'OnlineHelp-Core-Engine'
 }
 
+{ #category : #'instance creation' }
+OHTutorialItem class >> titled: aUniqueTitle [
+	^(self new)
+		title: aUniqueTitle;
+		yourself
+]
+
 { #category : #accessing }
 OHTutorialItem >> description: aString [ 
 	 
@@ -20,7 +27,7 @@ OHTutorialItem >> title [
 ]
 
 { #category : #accessing }
-OHTutorialItem >> title: aString [ 
+OHTutorialItem >> title: aSymbol [ 
 	 
-	title := aString
+	title := aSymbol
 ]

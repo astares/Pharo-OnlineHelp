@@ -18,11 +18,9 @@ PharoTutorial class >> pharoIntroPage2 [
 PharoTutorial class >> pharoTutorialOn: aBuilder [
 	<onlineTutorial>
 	
-	(aBuilder tutorial: #'Pharo Tutorial')
-		title: 'Pharo Tutorial';
-		description: 'Overview of the Pharo environment and tools';
-		addLesson:  ((aBuilder lesson: #'Lesson 1')
-						title: 'The environment'; 
+	(aBuilder tutorial: #'Pharo Tutorial')		 
+		description: 'A short overview of the Pharo environment and tools';
+		addLesson:  ((aBuilder lesson: #'Lesson 1')						 
 						description: 'The Pharo environment';
 						addPage: #pharoIntroPage1 from: self;
 						addPage: #pharoIntroPage2 from: self;	
@@ -43,11 +41,9 @@ PharoTutorial class >> smalltalkIntroPage2 [
 PharoTutorial class >> smalltalkTutorialOn: aBuilder [
 	<onlineTutorial>
 	
-	(aBuilder tutorial: #'Smalltalk Tutorial')
-		title: 'Smalltalk Introduction';
-		description: 'Overview of the Smalltalk language';
-		addLesson:  ((aBuilder lesson: #'Lesson 1')
-						title: 'The Basics'; 
+	(aBuilder tutorial: #'Smalltalk Introduction')
+		description: 'An overview and introduction to the Smalltalk programming language';
+		addLesson:  ((aBuilder lesson: #'The Basics')					  
 						description: 'Smalltalk basics';
 						addPage: #smalltalkIntroPage1 from: self;
 						addPage: #smalltalkIntroPage2 from: self;	
