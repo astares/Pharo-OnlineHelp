@@ -39,6 +39,26 @@ OHTutorialPageRequestHandler >> generateAllTutorialsPage [
 ]
 
 { #category : #'rendering-common' }
+OHTutorialPageRequestHandler >> generatePageForLesson: aLesson tutorial: aTutorial [ 
+	 ^self helpPageWithContent: [:stream |		
+		stream << self helpNavigationMenu.		
+		stream << '<br/><div class="container" style="padding-top: 40px;">'.
+		
+			stream << '<div class="row">'.
+				"left side navigation"
+		 		stream << '<div class="span3">'.
+					self renderTutorialSelectionOn: stream.
+				stream << '</div>'.
+				"right side"
+		 		stream << '<div class="span9">'.
+					self renderLessonOverview: aLesson forTutorial: aTutorial on: stream.
+				stream << '</div>'.						
+			stream << '</div>'.
+		
+		stream << '</div>']
+]
+
+{ #category : #'rendering-common' }
 OHTutorialPageRequestHandler >> generatePageForTutorial: aTutorial [
 	 ^self helpPageWithContent: [:stream |		
 		stream << self helpNavigationMenu.		
@@ -82,11 +102,12 @@ OHTutorialPageRequestHandler >> generateTutorialPage [
 OHTutorialPageRequestHandler >> handleRequest: aRequest [
 	|  action tutorial lesson page |
  
-	tutorial := (aRequest uri queryAt: 'tutorial' 
-							 ifAbsent: [ ^self htmlResponse: self generateAllTutorialsPage]).						 
-	lesson := aRequest uri queryAt: 'lesson' ifAbsent: [ nil ].
-	lesson isNil ifTrue: [^self htmlResponse: (self generatePageForTutorial: tutorial asSymbol) ].	
-	page := (aRequest uri queryAt: 'page' ifAbsent: nil).	
+	tutorial := aRequest uri queryAt: 'tutorial' 
+							 ifAbsent: [ ^self htmlResponse: self generateAllTutorialsPage].						 
+	lesson := aRequest uri queryAt: 'lesson' 
+							 ifAbsent: [^self htmlResponse: (self generatePageForTutorial: tutorial asSymbol) ].	
+	page := aRequest uri queryAt: 'page' 
+							 ifAbsent: [^self htmlResponse: (self generatePageForLesson: lesson asSymbol tutorial: tutorial asSymbol) ].	
 	^self htmlResponse: self generateTutorialPage 
 ]
 
@@ -125,21 +146,49 @@ OHTutorialPageRequestHandler >> prefix [
 { #category : #'rendering-tutorials' }
 OHTutorialPageRequestHandler >> renderAvailableTutorialsOn: stream [
 	"Render the content menu for all tutorials"
-	
+
+	stream << '<ul class="breadcrumb">
+					<li><a href="/tutorials">Home</a></li>  
+			</ul>'.
+
+	"Render all tutorials with description"
 	self tutorialsToRender do: [ :tutorial |	 
- 		stream << '<h3><a name="' << (self decodeAsLink: tutorial title).
-		stream << '"></a>' << '<a href="tutorials?tutorial=' << (self decodeAsLink: tutorial title) << ' ">' << tutorial title asString << '</a></h3>'.
+ 		stream << '<h3><a name="' << (self decodeAsLink: tutorial title) << '"></a>'.
+		stream << '<a href="tutorials?tutorial=' << (self decodeAsLink: tutorial title) << '">' << tutorial title asString << '</a></h3>'.
 		stream << '<h4 class="muted">&nbsp;&nbsp;' << tutorial description << '</h4>' ]
 ]
 
 { #category : #'rendering-common' }
+OHTutorialPageRequestHandler >> renderLessonOverview: aLesson forTutorial: aTutorial on: stream [
+	|tutorial lesson |
+	tutorial := self tutorialNamed: aTutorial.
+	lesson := tutorial lessonNamed: aLesson.
+	
+	stream << '<ul class="breadcrumb">
+					<li><a href="/tutorials">Home</a><span class="divider">/</span></li>
+					<li><a href="tutorials?tutorial=' << (self decodeAsLink: tutorial title) << '">' << tutorial title asString << '</a> <span class="divider">/</span></li>
+					<li><a href="#">' << lesson title asString << '</a></li>
+			</ul>'.
+	
+	 
+]
+
+{ #category : #'rendering-tutorials' }
 OHTutorialPageRequestHandler >> renderTutorialOverview: aTutorial on: stream [
 	|tutorial|
-	 
 	tutorial := self tutorialNamed: aTutorial.	 
-	stream << '<h2>' << (tutorial title asString) << '</h2>'.
+	 
+	stream << '<ul class="breadcrumb">
+					<li><a href="/tutorials">Home</a><span class="divider">/</span></li>
+					<li><a href="#">' << tutorial title asString << '</a> <span class="divider">/</span></li>
+			</ul>'.
+
+	 
 	tutorial lessons do: [:each |
-		stream << '<h3>' << (each title asString) << '</h3>' ]
+		stream << '<h3>'.
+		stream << '<a href="tutorials?tutorial=' << (self decodeAsLink: tutorial title) << '&lesson=' << (self decodeAsLink: each title) << '">' << (each title asString) << '</a></h3>'.
+		stream << '</h3>'.
+		stream << '<span>' << each description << '</span>' ]
 		
 	
 ]
@@ -157,15 +206,13 @@ OHTutorialPageRequestHandler >> renderTutorialSelectionOn: stream [
 
 	self tutorialsToRender do: [ :tutorial |
 	 
-		stream << '<li><a href="#'.
-		stream << (ZnResourceMetaUtils decodePercent: tutorial title).
+		stream << '<li><a href="/tutorials#'.
+		stream << (self decodeAsLink: tutorial title).
 		stream <<  '">'.
 		stream << tutorial title.
 		stream << '</a></li>'].					
 					
-	stream << '</ul>
-				</div>			
-			 </div>'.
+	stream << '</ul></div></div>'.
 
 
 	

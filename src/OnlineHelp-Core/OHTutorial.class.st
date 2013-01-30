@@ -2,23 +2,28 @@ Class {
 	#name : #OHTutorial,
 	#superclass : #OHTutorialItem,
 	#instVars : [
-		'lessons'
+		'lessonMap'
 	],
 	#category : #'OnlineHelp-Core-Engine'
 }
 
 { #category : #accessing }
-OHTutorial >> addLesson: anOHTutorialLesson [ 
-	self lessons add: anOHTutorialLesson 
+OHTutorial >> addLesson: aLesson [ 
+	self lessonMap at: aLesson title asSymbol put: aLesson
+]
+
+{ #category : #'private accessing' }
+OHTutorial >> lessonMap [
+	lessonMap ifNil: [ lessonMap := OrderedIdentityDictionary new ].
+	^lessonMap
 ]
 
 { #category : #accessing }
-OHTutorial >> description [
-	^description 
+OHTutorial >> lessonNamed: aSymbol [
+	^self lessonMap at: aSymbol ifAbsent: [nil]
 ]
 
 { #category : #accessing }
 OHTutorial >> lessons [
-	lessons ifNil: [ lessons := OrderedCollection new ].
-	^lessons
+	^lessonMap values
 ]

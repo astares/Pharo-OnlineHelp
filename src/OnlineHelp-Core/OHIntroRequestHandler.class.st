@@ -139,3 +139,8 @@ OHIntroRequestHandler >> renderLesson: lesson fromTutorial: tutorial on: stream 
 	stream << '<li>'.
 	stream << lesson title.
 ]
+
+{ #category : #'request handling' }
+OHIntroRequestHandler >> tutorialsToRender [
+	^OHTutorialBuilder availableTutorials
+]

@@ -20,10 +20,15 @@ PharoTutorial class >> pharoTutorialOn: aBuilder [
 	
 	(aBuilder tutorial: #'Pharo Tutorial')		 
 		description: 'A short overview of the Pharo environment and tools';
-		addLesson:  ((aBuilder lesson: #'Lesson 1')						 
-						description: 'The Pharo environment';
+		addLesson:  ((aBuilder lesson: #'The Pharo environment')						 
+						description: 'In this lesson you will learn how to use the Pharo environment.';
 						addPage: #pharoIntroPage1 from: self;
 						addPage: #pharoIntroPage2 from: self;	
+						yourself);
+		addLesson:  ((aBuilder lesson: #'Pharo Tools')						 
+						description: 'In this lesson you will learn about the Pharo tools';
+						addPage: #pharoIntroPage3 from: self;
+						addPage: #pharoIntroPage4 from: self;	
 						yourself)
 ]
 

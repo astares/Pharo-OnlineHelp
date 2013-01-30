@@ -16,6 +16,11 @@ OHTutorialItem class >> titled: aUniqueTitle [
 ]
 
 { #category : #accessing }
+OHTutorialItem >> description [
+	^description 
+]
+
+{ #category : #accessing }
 OHTutorialItem >> description: aString [ 
 	 
 	description := aString
