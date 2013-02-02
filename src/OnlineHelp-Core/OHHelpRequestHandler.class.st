@@ -90,7 +90,7 @@ OHHelpRequestHandler >> helpPageWithContent: aBlock [
 OHHelpRequestHandler >> htmlResponse: html [
 	"Reply with a dynamic HTML page"
 
-	^ ZnResponse ok: (ZnEntity html:  html)
+	^ ZnResponse ok: (ZnEntity html: html)
 ]
 
 { #category : #defaults }

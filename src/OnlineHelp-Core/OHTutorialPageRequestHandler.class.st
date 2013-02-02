@@ -100,8 +100,8 @@ OHTutorialPageRequestHandler >> generatePageForTutorial: aTutorial [
 
 { #category : #'request handling' }
 OHTutorialPageRequestHandler >> handleRequest: aRequest [
-	|  action tutorial lesson page |
- 
+	|  action tutorial lesson page linker |
+	 
 	tutorial := aRequest uri queryAt: 'tutorial' 
 							 ifAbsent: [ ^self htmlResponse: self generateAllTutorialsPage].						 
 	lesson := aRequest uri queryAt: 'lesson' 
@@ -134,7 +134,7 @@ OHTutorialPageRequestHandler >> markdown: aString on: stream [
 { #category : #defaults }
 OHTutorialPageRequestHandler >> prefix [
  
-	^'tutorials'
+	^'tutorials2'
 ]
 
 { #category : #'rendering-tutorials' }
@@ -175,9 +175,10 @@ OHTutorialPageRequestHandler >> renderPage: pageNumber forLesson: aLesson tutori
 	content := lesson contentForPage: pageNumber.
 	
 	stream << '<div class="pagination .pagination-mini"><ul>'.
-	pageNumber > 1 ifTrue: [ stream <<   '<li><a href="#">&lt;&lt;</a></li>' ].
+	pageNumber > 1 
+			ifTrue: [ stream <<   '<li><a href="xxx">&lt;&lt;</a></li>' ].
 
-	1 to: lesson numberOfPages do: [: page | stream << '<li><a href="#"> ' << page asString << '  </a></li>'].
+	1 to: lesson numberOfPages do: [: page | stream << '<li>' << (self linkStartToPageNr: page on: stream) << page asString << '  </a></li>'].
 
 	pageNumber < lesson numberOfPages ifTrue: [ stream << '<li><a href="#">&gt;&gt;</a></li>' ].
 
