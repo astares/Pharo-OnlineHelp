@@ -137,7 +137,8 @@ OHTutorialRequestHandler >> renderPage: pageNumber using: aContext [
 	|tutorial lesson content stream |
 	tutorial := self tutorialNamed: aContext request tutorial.
 	lesson := tutorial lessonNamed: aContext request lesson asSymbol.
-	content := lesson contentForPage: pageNumber.
+ 
+	content := lesson contentForPage: aContext request page asInteger.
 	stream := aContext responseStream.
 	stream << '<div class="pagination .pagination-mini"><ul>'.
 	pageNumber > 1 
@@ -153,7 +154,7 @@ OHTutorialRequestHandler >> renderPage: pageNumber using: aContext [
 	
 ]
 
-{ #category : #rendering }
+{ #category : #'rendering-pages' }
 OHTutorialRequestHandler >> renderPageUsing: aContext [ 
 	|stream|
 	stream :=aContext responseStream.

@@ -1,7 +1,7 @@
 Class {
 	#name : #PharoTutorial,
 	#superclass : #Object,
-	#category : #'OnlineHelp-Core-Web'
+	#category : #'OnlineHelp-Tutorials'
 }
 
 { #category : #'pharo tutorial - pages' }
