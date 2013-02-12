@@ -37,3 +37,8 @@ OHAPIHelpRequest >> hasItem [
 OHAPIHelpRequest >> item [
 	^httpRequest uri queryAt: 'item' ifAbsent: self defaultItem
 ]
+
+{ #category : #'accessing-parts' }
+OHAPIHelpRequest >> itemAsRealClass [
+	^Smalltalk at: self item asSymbol
+]

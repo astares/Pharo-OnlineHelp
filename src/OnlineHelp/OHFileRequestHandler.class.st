@@ -1,6 +1,6 @@
 Class {
 	#name : #OHFileRequestHandler,
-	#superclass : #OHHelpRequestHandlerOld,
+	#superclass : #OHRequestHandler,
 	#category : #'OnlineHelp-Core-Engine'
 }
 

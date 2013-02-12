@@ -16,15 +16,10 @@ HelpRequestDispatcher >> buildDispatchMap [
 		map: '/' to: 'welcome';				
 		map: 'favicon.ico' to: #favicon:.
 		
-	OHHelpRequestHandlerOld allSubclassesDo: [:each |
+	OHRequestHandler allSubclassesDo: [:each |
+		each isAbstract ifFalse: [ 
 		handler := each new.
-		self map: handler prefix  to: handler
-	].
-
-	OHHelpRequestHandler allSubclassesDo: [:each |
-		handler := each new.
-		self map: handler prefix  to: handler
-	]
+		self map: handler prefix  to: handler]]
 ]
 
 { #category : #accessing }

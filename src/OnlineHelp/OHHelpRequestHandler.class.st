@@ -1,8 +1,13 @@
 Class {
 	#name : #OHHelpRequestHandler,
-	#superclass : #Object,
+	#superclass : #OHRequestHandler,
 	#category : #'OnlineHelp-Core-Engine'
 }
+
+{ #category : #testing }
+OHHelpRequestHandler class >> isAbstract [
+	^self name == #OHHelpRequestHandler 
+]
 
 { #category : #'request handling' }
 OHHelpRequestHandler >> handleRequest: aRequest [
@@ -14,7 +19,7 @@ OHHelpRequestHandler >> handleRequest: aRequest [
 	
 ]
 
-{ #category : #defaults }
+{ #category : #'private-content' }
 OHHelpRequestHandler >> helpNavigationMenu [
 	"Returns the help navigation menu"
 	
@@ -74,6 +79,11 @@ OHHelpRequestHandler >> helpNavigationMenu [
 OHHelpRequestHandler >> renderContentUsing: context [ 
 	
 	^self subclassResponsibility 
+]
+
+{ #category : #rendering }
+OHHelpRequestHandler >> renderMenuUsing: aContext [ 
+	aContext responseStream nextPutAll: self helpNavigationMenu 
 ]
 
 { #category : #accessing }

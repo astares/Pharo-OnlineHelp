@@ -170,6 +170,7 @@ OHTutorialPageRequestHandler >> renderLessonOverview: aLesson forTutorial: aTuto
 { #category : #'rendering-pages' }
 OHTutorialPageRequestHandler >> renderPage: pageNumber forLesson: aLesson tutorial: aTutorial on: stream [
 	|tutorial lesson content |
+	self halt.
 	tutorial := self tutorialNamed: aTutorial.
 	lesson := tutorial lessonNamed: aLesson.
 	content := lesson contentForPage: pageNumber.
@@ -178,7 +179,7 @@ OHTutorialPageRequestHandler >> renderPage: pageNumber forLesson: aLesson tutori
 	pageNumber > 1 
 			ifTrue: [ stream <<   '<li><a href="xxx">&lt;&lt;</a></li>' ].
 
-	1 to: lesson numberOfPages do: [: page | stream << '<li>' << (self linkStartToPageNr: page on: stream) << page asString << '  </a></li>'].
+	1 to: lesson numberOfPages do: [: page | (self linkStartToPageNr: page on: stream) ].
 
 	pageNumber < lesson numberOfPages ifTrue: [ stream << '<li><a href="#">&gt;&gt;</a></li>' ].
 

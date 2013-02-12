@@ -20,7 +20,8 @@ OHHelpRequest class >> fromHTTPRequest: anHTTPRequest [
 { #category : #'private-initialization' }
 OHHelpRequest >> initFromHTTPRequest: anHTTPRequest [
 	httpRequest := anHTTPRequest.
-	prefix := anHTTPRequest uri segments first.
+	anHTTPRequest uri segments ifNotNil: [ prefix := anHTTPRequest uri segments first. ]
+	
 	 
 ]
 
