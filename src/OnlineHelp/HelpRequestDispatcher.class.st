@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'dispatchMap'
 	],
-	#category : #'OnlineHelp-Core-Engine'
+	#category : #'OnlineHelp-Core-Web'
 }
 
 { #category : #building }

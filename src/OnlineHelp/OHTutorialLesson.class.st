@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'pageSelectors'
 	],
-	#category : #'OnlineHelp-Core-Engine'
+	#category : #'OnlineHelp-Core-Model'
 }
 
 { #category : #accessing }

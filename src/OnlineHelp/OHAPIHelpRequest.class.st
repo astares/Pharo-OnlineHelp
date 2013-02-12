@@ -1,7 +1,7 @@
 Class {
 	#name : #OHAPIHelpRequest,
 	#superclass : #OHHelpRequest,
-	#category : #'OnlineHelp-Core-Engine'
+	#category : #'OnlineHelp-Core-Web'
 }
 
 { #category : #'accessing-parts' }

@@ -5,7 +5,7 @@ Class {
 		'httpRequest',
 		'prefix'
 	],
-	#category : #'OnlineHelp-Core-Engine'
+	#category : #'OnlineHelp-Core-Web'
 }
 
 { #category : #'instance creation' }

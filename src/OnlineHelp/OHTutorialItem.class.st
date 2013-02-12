@@ -5,7 +5,7 @@ Class {
 		'title',
 		'description'
 	],
-	#category : #'OnlineHelp-Core-Engine'
+	#category : #'OnlineHelp-Core-Model'
 }
 
 { #category : #'instance creation' }
