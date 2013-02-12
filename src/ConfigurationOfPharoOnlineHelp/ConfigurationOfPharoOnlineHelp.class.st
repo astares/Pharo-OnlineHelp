@@ -150,7 +150,7 @@ ConfigurationOfPharoOnlineHelp >> version11: spec [
 		spec description: 'first release'. 
 		spec author: 'Torsten Bergmann'.
 		spec timestamp: '02/12/2013 22:00'.
-		spec package: 'OnlineHelp' with: 'OnlineHelp-tbn.40'.
+		spec package: 'OnlineHelp' with: 'OnlineHelp-tbn.41'.
 		spec postLoadDoIt: #postloadForCore:package:
 	]
 ]
