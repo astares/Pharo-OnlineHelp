@@ -26,7 +26,7 @@ OHTutorialRequest >> lesson [
 
 { #category : #'accessing parts' }
 OHTutorialRequest >> page [
-	^httpRequest uri queryAt: 'page' ifAbsent: nil
+	^httpRequest uri queryAt: 'page' ifAbsent: 1
 ]
 
 { #category : #'accessing parts' }
