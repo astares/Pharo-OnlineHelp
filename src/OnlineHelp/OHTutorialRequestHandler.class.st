@@ -15,9 +15,3 @@ OHTutorialRequestHandler >> prefix [
 OHTutorialRequestHandler >> requestClass [
 	^OHTutorialRequest 
 ]
-
-{ #category : #rendering }
-OHTutorialRequestHandler >> respondUsingContext: aContext [ 	
-
-	aContext response nextPutAll: '<b>Hi</b>'
-]

@@ -11,6 +11,17 @@ OHAPIHelpRequestHandler >> prefix [
 	^'api'
 ]
 
+{ #category : #rendering }
+OHAPIHelpRequestHandler >> renderContentUsing: aContext [   
+
+	
+]
+
+{ #category : #rendering }
+OHAPIHelpRequestHandler >> renderMenuUsing: aContext [ 
+	aContext responseStream nextPutAll: self helpNavigationMenu 
+]
+
 { #category : #defaults }
 OHAPIHelpRequestHandler >> requestClass [
 	^OHAPIHelpRequest 
