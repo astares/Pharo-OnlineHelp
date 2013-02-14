@@ -42,7 +42,8 @@ OHTutorialRequestHandler >> markdown: aString on: stream [
 		].
 		stream << '");		 	 	
 			 document.getElementById("contents").innerHTML = result;
-        </script>'
+        </script>
+'
 		
 	 
 ]
@@ -150,7 +151,10 @@ OHTutorialRequestHandler >> renderPage: pageNumber using: aContext [
 
 	stream << '</ul></div>'.
 	
-	self markdown: content on: stream
+	self markdown: content on: stream.
+
+	"Also add the websequence diagram script"	
+	stream << '<script type="text/javascript" src="http://www.websequencediagrams.com/service.js"></script>'
 	
 ]
 
