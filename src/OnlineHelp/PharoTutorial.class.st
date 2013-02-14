@@ -163,9 +163,12 @@ All global preferences of Pharo can be viewed or changed from the Settings Brows
 In the <font color="red"><b>World menu</b></font> you will find an entry to update your system. Just right
 click on the Pharo desktop in the Pharo window and select <font color="brown"><b>System -> Settings</b></font>.
 
+A new window will open called the "Settings Browser". On the left side you can choose the settings category and find the details on the right side. This browser allows the browsing as well as the editing of setting values.
 
+<u><b>An example:</b></u>
+If you want the Pharo desktop to fill the whole screen go to the section <font <b>Appearance - Morphic - Fullscreen mode</b></font> and click on the checkbox.
 
-Pharo includes a complete settings framework (see [Settings Declaration][1]) for that - you can use that easily for your own applications. 
+Note that Pharo includes a complete settings framework (see [Settings Declaration][1]) for that - you can use that easily for your own applications. 
 
 
 [1]: http://book.pharo-project.org/book/Tidbits/CustomizingPharo/DeclaringSetting/  "Settings Declaration"
@@ -215,16 +218,27 @@ Everything in Smalltalk is on object, and all work is done by sending messages t
 
 To execute the following examples, open a new workspace in your Pharo environment 
 and enter or copy the text there. Then select the text using the left mouse button (as in 
-a word processor). You can then execute the text with the <b>Print it</b> command 
+a word processor). 
+
+You can then execute the text with the <b>Print it</b> command which will execute the code and print the result.
 
 <pre>
-3 squared			"receiver is small integer 3"
-''abc'' asUppercase	"receiver is string ''abc'' "
-200 factorial			
+1 negated			"Send the message #negated to the small integer 1"
 </pre>
 
-The Smalltalk syntax is easy to remember: an Object always comes first and a message follows.
-So the object is the receiver of the message.
+As you will notice the result that is printed is <b>-1</b>.
+
+By evaluating an expression <u>one or more messages are sent</u> to an object (here 1) and this objects <u>responds</u> with either itself or another object (here -1).  
+
+Try some more examples:
+<pre>
+3 squared			"receiver object is small integer 3"
+''abc'' asUppercase	"receiver object is string ''abc'' "
+200 factorial		"sending the message #factorial"	
+</pre>
+
+The Smalltalk syntax is easy to remember: an object always comes first and a message follows.
+So first the object as the receiver of the message and then the message you want to send.
 
 <img src="http://yuml.me/diagram/scruffy;/class/%5BObject%5D-%5Bnote:You%20can%20send%20messages%20to%20objects.%5D.png"/>
 
@@ -266,6 +280,52 @@ Messages
 '
 ]
 
+{ #category : #'smalltalk tutorial - pages' }
+PharoTutorial class >> smalltalkIntroPartXPage1 [
+	^'
+Further references
+----------------------------
+
+One of the best ways to learn Smalltalk is to download one of the versions of Smalltalk (like <a href="http://pharo-project.org">Pharo</a>), install it, and grab a copy of one of the many free online Smalltalk books. Then dive in and get your fingers and mind immersed into the world of objects communicating with each other via messages.
+
+  
+ 
+                
+'
+]
+
+{ #category : #'smalltalk tutorial - pages' }
+PharoTutorial class >> smalltalkIntroPartXPage2 [
+	^'
+Smalltalk systems
+----------------------------
+
+
+* [Amber Smalltalk][1]
+* [Dolphin Smalltalk][2]
+* [GNU Smalltalk][3]
+* [Cincom Smalltalk][4] 
+* [Pharo] [5]
+* [Redline Smalltalk][6]
+* [SmalltalkMT] [7]
+* [SmalltalkX] [8]
+* [Squeak] [9]
+* [VA Smalltalk] [10]
+
+[1]: http://amber-lang.net  "Amber Smalltalk" 
+[2]: http://www.object-arts.com "Dolphin Smalltalk"
+[3]: http://smalltalk.gnu.org "GNU Smalltalk"
+[4]: http://www.cincomsmalltalk.com  "Cincom Smalltalk"
+[5]: http://www.pharo-project.org "Pharo"
+[6]: http://www.redline.st "Redline Smalltalk"
+[7]: http://objectconnect.com "SmalltalkMT"
+[8]: http://www.exept.de/en/products/smalltalkx "SmalltalkX"
+[9]: http://www.squeak.org "Squeak"
+[10]: http://www.instantiations.com  "VA Smalltalk"
+                
+'
+]
+
 { #category : #'smalltalk tutorial' }
 PharoTutorial class >> smalltalkTutorialOn: aBuilder [
 	<onlineTutorial>
@@ -277,5 +337,10 @@ PharoTutorial class >> smalltalkTutorialOn: aBuilder [
 						addPage: #smalltalkIntroPart1Page1 from: self;
 						addPage: #smalltalkIntroPart1Page2 from: self;	
 						addPage: #smalltalkIntroPart1Page3 from: self;	
-						yourself)
+						yourself);
+		addLesson:  ((aBuilder lesson: #'Part 10: Further references')					  
+						description: 'Some infos and resources on how to learn the Smalltalk language';
+						addPage: #smalltalkIntroPartXPage1 from: self;	
+						addPage: #smalltalkIntroPartXPage2 from: self;									 
+						yourself)						
 ]
