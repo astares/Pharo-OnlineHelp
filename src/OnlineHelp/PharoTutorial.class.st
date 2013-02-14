@@ -89,6 +89,24 @@ For instance there is a project called "<b>RoarVM</b>" - an adoption of the virt
 ]
 
 { #category : #'pharo tutorial - pages' }
+PharoTutorial class >> pharoIntroPart1Page3 [	
+	^'
+The image file
+==========
+
+Pharo is a <b>dynamic object system</b> and this system is represented by a so called <font color="brown"><b>image</b></font>. The entire Smalltalk system (including all the objects in their current states)
+can be persisted (saved) to a single file with an <b><i>.image</i></b> extension. <br/></br>
+If you later open the image file again the Pharo system will continue to run at excactly the same point where you saved it before. You can even transfer an image file to a completely different OS platform and open it with the according virtual machine.
+
+When you download a new fresh Pharo distribution the <b><i>default developer image</i></b> already contains tools and classes that form the Pharo system. You can modify this image to suit your needs. Typically you will add new code to create something new.
+
+If you want to transfer your applications code to other images (like a <b><i>clean production image</i></b>) you can package it using using a tool called <font color="brown"><b>Monticello</b></font>.
+
+For most developers coming from traditional environments this image concept is something new and hard to understand at the beginning. Once you work with it you will notice that it can make you very productive since it allows you to save the systems state at any point in time and continue later at will without a new setup. For instance you can save the system while debugging and continue to catch a bug in the debugger just the next day at exactly the same point.'
+
+]
+
+{ #category : #'pharo tutorial - pages' }
 PharoTutorial class >> pharoIntroPart2Page1 [
 	^'
 The Pharo Desktop
@@ -129,6 +147,7 @@ PharoTutorial class >> pharoTutorialOn: aBuilder [
 						description: 'A short overview of the parts that make up the Pharo system. It should help you understand what is required to run Pharo on your operating system.';
 						addPage: #pharoIntroPart1Page1 from: self;
 						addPage: #pharoIntroPart1Page2 from: self;	
+						addPage: #pharoIntroPart1Page3 from: self;	
 						yourself);		
 		addLesson:  ((aBuilder lesson: #'The Pharo environment')						 
 						description: 'In this lesson you will learn how to use the Pharo environment.';
