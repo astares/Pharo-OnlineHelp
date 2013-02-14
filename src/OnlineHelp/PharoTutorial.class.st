@@ -4,6 +4,15 @@ Class {
 	#category : #'OnlineHelp-Tutorials'
 }
 
+{ #category : #ideas }
+PharoTutorial class >> ideas [
+
+	"http://lists.squeakfoundation.org/pipermail/squeak-dev/2000-April/013808.html
+	
+	
+	"
+]
+
 { #category : #'pharo tutorial - pages' }
 PharoTutorial class >> pharoIntroPage3 [
 	^'
@@ -176,6 +185,63 @@ Note that Pharo includes a complete settings framework (see [Settings Declaratio
 '
 ]
 
+{ #category : #'pharo tutorial - pages' }
+PharoTutorial class >> pharoIntroPart3Page1 [
+	^'
+The Workspace
+===========
+A <font color="red"><b>workspace</b></font> is a window used as a scratchpad area where fragments of Smalltalk code can be entered, stored, edited, and evaluated
+
+
+
+To open a workspace window in Pharo, one possibility is to bring up the World menu and then select <font color="brown"><b>Workspace</b></font>.
+
+You can then type in any Smalltalk code inside the workspace window and <b><i>execute it</i></b> or <b><i>inspect it</i></b>. This is normally done by typing in some code, highlighting it with the mouse, and then selecting "Do it" or "Print it" or "Inspect it" from the pop-up menu. Or "Debug it" to open a debugger on the code.
+'
+]
+
+{ #category : #'pharo tutorial - pages' }
+PharoTutorial class >> pharoIntroPart3Page2 [
+	^'
+The Transcript
+==========
+The <font color="red"><b>transcript</b></font> window is often used for logging or printing results from text only code.
+
+
+
+To bring it up use the World menu and then select <font color="brown"><b>Tools -> Transcript</b></font>. You can also type
+
+<pre>Transcript open</pre>
+
+in a Workspace and evaluate it.
+
+Since the transcript behaves like a workspace you can also use it to edit text and enter Smalltalk expressions. 
+To log something to the transcript window you can just evaluate the following expression:
+
+<pre>Transcript show: ''HelloWorld''</pre>
+
+Technically <b>Transcript</b> is a global variable you can therefore access it from anywhere in the system or your code.
+'
+]
+
+{ #category : #'pharo tutorial - pages' }
+PharoTutorial class >> pharoIntroPart3Page3 [
+	^'
+The System browser
+==============
+The <font color="red"><b>system browser</b></font> gives you access to the packages and the classes of the system.
+
+
+To bring it up use the World menu and then select <font color="brown"><b>System Browser</b></font>. You can also type
+
+<pre>Browser open</pre>
+
+in a Workspace and evaluate it.
+
+
+'
+]
+
 { #category : #'pharo tutorial' }
 PharoTutorial class >> pharoTutorialOn: aBuilder [
 	<onlineTutorial>
@@ -198,8 +264,8 @@ PharoTutorial class >> pharoTutorialOn: aBuilder [
 						yourself);
 		addLesson:  ((aBuilder lesson: #'Pharo Tools')						 
 						description: 'In this lesson you will learn about the Pharo tools';
-						addPage: #pharoIntroPage3 from: self;
-						addPage: #pharoIntroPage4 from: self;	
+						addPage: #pharoIntroPart3Page1 from: self;
+						addPage: #pharoIntroPart3Page2 from: self;	
 						yourself);
 		addLesson:  ((aBuilder lesson: #'Learning Pharo')						 
 						description: 'This section explains some useful resources to continue your tour with Pharo. We will tell you about the best places to learn about Pharo and the Smalltalk programming language';
@@ -287,6 +353,15 @@ Further references
 ----------------------------
 
 One of the best ways to learn Smalltalk is to download one of the versions of Smalltalk (like <a href="http://pharo-project.org">Pharo</a>), install it, and grab a copy of one of the many free online Smalltalk books. Then dive in and get your fingers and mind immersed into the world of objects communicating with each other via messages.
+
+Use one of the [free Smalltalk Books][1] that are [available online][1] to learn about the language or one of the two Pharo books that are also online available for free:
+
+<table border="1">
+<tr><td><a href="http://pharobyexample.org/"><img src="http://stephane.ducasse.free.fr/FreeBooks/PBE/PharoByExample.png"/></a><td></tr>
+</table>
+<a href="http://rmod.lille.inria.fr/pbe2/"><img style="width: 140px;" src="http://rmod.lille.inria.fr/pbe2/pictures/pbe2.jpg"/></a>
+[1]: http://stephane.ducasse.free.fr/FreeBooks.html  "free Smalltalk Books"
+
 
   
  
