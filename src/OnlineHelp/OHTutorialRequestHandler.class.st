@@ -15,7 +15,11 @@ OHTutorialRequestHandler >> decodeAsLink: aString [
 OHTutorialRequestHandler >> linkToPageNr: page using: aContext content: aString [
 	|stream|
 	stream := aContext responseStream.
-	stream << '<li><a href="/tutorials?tutorial='.
+ 
+	page = aContext request page asInteger 
+		ifTrue: [ stream << '<li class="active">'. ]
+		ifFalse: [ stream << '<li>'. ].
+	stream << '<a href="/tutorials?tutorial='.
 	stream << aContext request tutorial.
 	stream << '&lesson='.
 	stream << aContext request lesson.

@@ -5,36 +5,6 @@ Class {
 }
 
 { #category : #'pharo tutorial - pages' }
-PharoTutorial class >> pharoIntroPage1 [
-	^'A First Level Header
-====================
-
-A Second Level Header
----------------------
-
-Now is the time for all good men to come to
-the aid of their country. This is just a
-regular paragraph.
-
-The quick brown fox jumped over the lazy
-dog''s back.
-
-### Header 3
-
-> This is a blockquote.
-> 
-> This is the second paragraph in the blockquote.
->
-> ## This is an H2 in a blockquote'
-]
-
-{ #category : #'pharo tutorial - pages' }
-PharoTutorial class >> pharoIntroPage2 [
-	^'
-<code>Hello</code>'
-]
-
-{ #category : #'pharo tutorial - pages' }
 PharoTutorial class >> pharoIntroPage3 [
 	^'
 <code>Hello</code>'
@@ -227,7 +197,12 @@ PharoTutorial class >> pharoTutorialOn: aBuilder [
 						description: 'In this lesson you will learn about the Pharo tools';
 						addPage: #pharoIntroPage3 from: self;
 						addPage: #pharoIntroPage4 from: self;	
-						yourself)
+						yourself);
+		addLesson:  ((aBuilder lesson: #'Learning Pharo')						 
+						description: 'This section explains some useful resources to continue your tour with Pharo. We will tell you about the best places to learn about Pharo and the Smalltalk programming language';
+						addPage: #pharoIntroPage3 from: self;
+						addPage: #pharoIntroPage4 from: self;	
+						yourself)						
 ]
 
 { #category : #'smalltalk tutorial - pages' }
