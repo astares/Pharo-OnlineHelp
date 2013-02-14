@@ -31,7 +31,7 @@ OHTutorialRequestHandler >> linkToPageNr: page using: aContext content: aString 
 { #category : #'rendering-pages' }
 OHTutorialRequestHandler >> markdown: aString on: stream [
 
-	stream << '<div class="container">	
+	stream << '<div class="container span9">	
 			<div id="contents" />EMPTY</div></div>
 			<script type="text/javascript">
 			 var converter1 = new Markdown.Converter();

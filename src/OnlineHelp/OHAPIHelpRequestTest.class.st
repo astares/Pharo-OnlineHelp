@@ -43,6 +43,16 @@ OHAPIHelpRequestTest >> testDefaultItem [
 ]
 
 { #category : #tests }
+OHAPIHelpRequestTest >> testHasAction [
+
+	|request|
+	request := (self requestFor: '/api?action=doSomething').
+	self 
+		assert: request hasAction;
+		assert: request action = 'doSomething'
+]
+
+{ #category : #tests }
 OHAPIHelpRequestTest >> testItem [
 	|request|
 	request := (self requestFor: '/api?action=instance&item=ProtoObject').
