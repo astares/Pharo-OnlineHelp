@@ -142,12 +142,11 @@ OHTutorialRequestHandler >> renderPage: pageNumber using: aContext [
 	content := lesson contentForPage: aContext request page asInteger.
 	stream := aContext responseStream.
 	stream << '<div class="pagination .pagination-mini"><ul>'.
-	pageNumber > 1 
-			ifTrue: [ self linkToPageNr: 1 using: aContext content: '&lt;&lt;' ].
 
+	"Pagination"
+	self linkToPageNr: 1 using: aContext content: '&lt;&lt;'.
 	1 to: lesson numberOfPages do: [: page | self linkToPageNr: page using: aContext content: page asString ].
-
-	pageNumber < lesson numberOfPages ifTrue: [ self linkToPageNr: lesson numberOfPages using: aContext content: '&gt;&gt;'	].
+	self linkToPageNr: lesson numberOfPages using: aContext content: '&gt;&gt;'.
 
 	stream << '</ul></div>'.
 	

@@ -107,6 +107,30 @@ For most developers coming from traditional environments this image concept is s
 ]
 
 { #category : #'pharo tutorial - pages' }
+PharoTutorial class >> pharoIntroPart1Page4 [	
+	^'
+The sources and changes file
+====================
+
+For various reasons, the source code associated with the image is stored in two other files:
+
+The code of the system as originally delivered is stored in the <b>source file</b> <font color="darkblue"><b>"PharoVxx.sources"</b></font>, and the sources for everything done since that time is in the <b>changes file</b> (which must similarly be named like the image but with an <b><i>.changes</b></i> extension) <font color="darkblue"><b>"ImageFileName.changes"</b></font>.
+
+Storing the source code in a separate file has several advantages. To begin with, if you have been working for a couple of hours, and your dog rolls over the power cord, you will still have a sequential record of all your program edits, and these can be perused and replayed with numerous tools such as changes: post-snapshot log. This feature has also saved many who got too adventurous in changing the system he or she was using.
+
+Also, if you wish to run the system with severely limited resources, it can be operated without any source code just by removing these files.
+
+Finally, since the changes file does not consume memory space, Pharo keeps a continuous log of all your program changes, and these can be examined and reinstated at any time. 
+
+So the sources/changes mechanism is <u>mostly for the system</u> to handle source code, track source code changes or recover after a crash. 
+
+<u><b>Note</b></u>: For packaging your own source code (for instance for an application) you will use other mechanisms and source code/versioning tools like <font color="brown"><b>Monticello</b></font>.
+
+'
+
+]
+
+{ #category : #'pharo tutorial - pages' }
 PharoTutorial class >> pharoIntroPart2Page1 [
 	^'
 The Pharo Desktop
@@ -114,7 +138,7 @@ The Pharo Desktop
 
 When Pharo starts up you will see a single window called the Pharo desktop. 
 
-<img src="http://book.pharo-project.org/files/ed/c5135wpi93rsei8s42z7ynlkghd3vr/pharostarted.png"/>
+<img src="http://book.pharo-project.org/files/ed/c5135wpi93rsei8s42z7ynlkghd3vr/pharostarted.png" style="width: 50%"/>
 
 From here you can open all the necessary tools of the environment by using the <font color="red"><b>World menu</b></font>.
 Just right click on the desktop to open the menu.
@@ -137,6 +161,48 @@ You can use it to access all the basic development tools like a <font color="bro
 '
 ]
 
+{ #category : #'pharo tutorial - pages' }
+PharoTutorial class >> pharoIntroPart2Page3 [
+	^'
+The update mechanism
+================
+
+Pharo includes a facility for automatically updating your system from a remote Pharo server.
+If you are connected to the Internet you can easily update your system to the latest state.
+
+In the <font color="red"><b>World menu</b></font> you will find an entry to update your system. Just right
+click on the Pharo desktop in the Pharo window and select <font color="brown"><b>System -> Software update</b></font>.
+
+<u><b>Note</b></u>: Any update changes your system - if you are unsure save your image first. 
+
+Alternatively you can get the latest Pharo builds from
+
+* the Pharo file server at http://files.pharo.org
+* or the continuous integration (CI) server at http://ci.pharo.org
+'
+]
+
+{ #category : #'pharo tutorial - pages' }
+PharoTutorial class >> pharoIntroPart2Page4 [
+	^'
+The settings browser
+===============
+
+All global preferences of Pharo can be viewed or changed from the Settings Browser.
+
+In the <font color="red"><b>World menu</b></font> you will find an entry to update your system. Just right
+click on the Pharo desktop in the Pharo window and select <font color="brown"><b>System -> Settings</b></font>.
+
+
+
+Pharo includes a complete settings framework (see [Settings Declaration][1]) for that - you can use that easily for your own applications. 
+
+
+[1]: http://book.pharo-project.org/book/Tidbits/CustomizingPharo/DeclaringSetting/  "Settings Declaration"
+
+'
+]
+
 { #category : #'pharo tutorial' }
 PharoTutorial class >> pharoTutorialOn: aBuilder [
 	<onlineTutorial>
@@ -148,11 +214,14 @@ PharoTutorial class >> pharoTutorialOn: aBuilder [
 						addPage: #pharoIntroPart1Page1 from: self;
 						addPage: #pharoIntroPart1Page2 from: self;	
 						addPage: #pharoIntroPart1Page3 from: self;	
+						addPage: #pharoIntroPart1Page4 from: self;	
 						yourself);		
 		addLesson:  ((aBuilder lesson: #'The Pharo environment')						 
 						description: 'In this lesson you will learn how to use the Pharo environment.';
 						addPage: #pharoIntroPart2Page1 from: self;
 						addPage: #pharoIntroPart2Page2 from: self;	
+						addPage: #pharoIntroPart2Page3 from: self;
+						addPage: #pharoIntroPart2Page4 from: self;														
 						yourself);
 		addLesson:  ((aBuilder lesson: #'Pharo Tools')						 
 						description: 'In this lesson you will learn about the Pharo tools';
