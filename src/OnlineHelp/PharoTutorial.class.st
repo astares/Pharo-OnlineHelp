@@ -149,7 +149,7 @@ The update mechanism
 Pharo includes a facility for automatically updating your system from a remote Pharo server.
 If you are connected to the Internet you can easily update your system to the latest state.
 
-In the <font color="red"><b>World menu</b></font> you will find an entry to update your system. Just right
+In the <font color="purple"><b>World menu</b></font> you will find an entry to update your system. Just right
 click on the Pharo desktop in the Pharo window and select <font color="brown"><b>System -> Software update</b></font>.
 
 <u><b>Note</b></u>: Any update changes your system - if you are unsure save your image first. 
@@ -169,13 +169,13 @@ The settings browser
 
 All global preferences of Pharo can be viewed or changed from the Settings Browser.
 
-In the <font color="red"><b>World menu</b></font> you will find an entry to update your system. Just right
+In the <font color="purple"><b>World menu</b></font> you will find an entry to update your system. Just right
 click on the Pharo desktop in the Pharo window and select <font color="brown"><b>System -> Settings</b></font>.
 
 A new window will open called the "Settings Browser". On the left side you can choose the settings category and find the details on the right side. This browser allows the browsing as well as the editing of setting values.
 
 <u><b>An example:</b></u>
-If you want the Pharo desktop to fill the whole screen go to the section <font <b>Appearance - Morphic - Fullscreen mode</b></font> and click on the checkbox.
+If you want the Pharo desktop to fill the whole screen go to the section <font color="teal"><b>Appearance - Morphic - Fullscreen mode</b></font> and click on the checkbox.
 
 Note that Pharo includes a complete settings framework (see [Settings Declaration][1]) for that - you can use that easily for your own applications. 
 
@@ -190,7 +190,7 @@ PharoTutorial class >> pharoIntroPart3Page1 [
 	^'
 The Workspace
 ===========
-A <font color="red"><b>workspace</b></font> is a window used as a scratchpad area where fragments of Smalltalk code can be entered, stored, edited, and evaluated
+A <font color="purple"><b>workspace</b></font> is a window used as a scratchpad area where fragments of Smalltalk code can be entered, stored, edited, and evaluated
 
 
 
@@ -205,7 +205,7 @@ PharoTutorial class >> pharoIntroPart3Page2 [
 	^'
 The Transcript
 ==========
-The <font color="red"><b>transcript</b></font> window is often used for logging or printing results from text only code.
+The <font color="purple"><b>transcript</b></font> window is often used for logging or printing results from text only code.
 
 
 
@@ -229,17 +229,25 @@ PharoTutorial class >> pharoIntroPart3Page3 [
 	^'
 The System browser
 ==============
-The <font color="red"><b>system browser</b></font> gives you access to the packages and the classes of the system.
+The <font color="purple"><b>system browser</b></font> gives you access to the packages and the classes of the system.
 
 
 To bring it up use the World menu and then select <font color="brown"><b>System Browser</b></font>. You can also type
 
 <pre>Browser open</pre>
 
-in a Workspace and evaluate it.
+in a Workspace and evaluate it. You can also open the browser directly on a class by sending the message #browse:
 
+<pre>String browse</pre>
 
-'
+This opens the browser with the class already selected. You can even send the #browse method to any object in the system to browse the methods of its class:
+
+<pre>65 asCharacter browse</pre>
+
+The system browser (in Pharo also called "Nautilus") is a typical Smalltalk "five-pane" browser with a series of horizontally-abutting selection panes positioned above an editing pane.
+The selection panes allow the user to specify first a package category and then a class, and further to refine the selection to indicate a specific class- or instance-method the implementation of which is presented in the editing pane for inspection or modification.
+
+The system browser allows you to create new packages, classes and methods or modify existing ones. It also includes tools to refactor and restructure existing code.'
 ]
 
 { #category : #'pharo tutorial' }
@@ -263,9 +271,10 @@ PharoTutorial class >> pharoTutorialOn: aBuilder [
 						addPage: #pharoIntroPart2Page4 from: self;														
 						yourself);
 		addLesson:  ((aBuilder lesson: #'Pharo Tools')						 
-						description: 'In this lesson you will learn about the Pharo tools';
+						description: 'In this lesson you will learn about the default Pharo tools.';
 						addPage: #pharoIntroPart3Page1 from: self;
-						addPage: #pharoIntroPart3Page2 from: self;	
+						addPage: #pharoIntroPart3Page2 from: self;
+						addPage: #pharoIntroPart3Page3 from: self;							
 						yourself);
 		addLesson:  ((aBuilder lesson: #'Learning Pharo')						 
 						description: 'This section explains some useful resources to continue your tour with Pharo. We will tell you about the best places to learn about Pharo and the Smalltalk programming language';
@@ -276,6 +285,111 @@ PharoTutorial class >> pharoTutorialOn: aBuilder [
 
 { #category : #'smalltalk tutorial - pages' }
 PharoTutorial class >> smalltalkIntroPart1Page1 [
+	^'
+Literals
+-----------
+A literal is a piece of Smalltalk code that the compiler converts immediately to an object. There are several types of literals in Smalltalk like:
+
+* <font color="purple"><b>Numbers</b></font>
+* <font color="purple"><b>Character constants</b></font>
+* <font color="purple"><b>Strings</b></font>
+* <font color="purple"><b>Symbol constants</b></font>
+* <font color="purple"><b>Boolean</b></font>
+* <font color="purple"><b>The undefined object</b></font>
+* <font color="purple"><b>Arrays of the previously described literals</b></font>
+'
+]
+
+{ #category : #'smalltalk tutorial - pages' }
+PharoTutorial class >> smalltalkIntroPart1Page2 [
+	^'
+### Numbers ###
+#### Integers ####
+Like in most programming languages you just write the number representing an integer as it is:
+<pre>1</pre>
+
+If you ask this simple number for its class you will notice that is an instance of SmallInteger (a subclass of Integer).
+<pre>1 class</pre>
+
+If you enter a large number the system will treat it using a different class: LargePositiveInteger (also a subclass of Integer).
+<pre>536870912 class</pre> 
+In Smalltalk (compared to languages like C or Java) you do not have to care about the range or basic/primitive types. So it is very
+easy in Smalltalk to work with large numbers:
+
+<pre>200 factorial</pre>
+
+<u>Side note</u>: <i>Integers are widely used in any programming language. Therefore integer objects (in contrast to other objects) are internally optimized for speed by the virtual machine. Nonetheless you will not notice this difference in Smalltalk since they are objects as any other objects in the system.</i>
+'
+]
+
+{ #category : #'smalltalk tutorial - pages' }
+PharoTutorial class >> smalltalkIntroPart1Page3 [
+	^'
+### Numbers ###
+#### Number syntax ####
+While you usually use numbers in decimal system (base 10) like simple integers:
+
+<pre>42</pre>
+
+it is also possible in Smalltalk to work with numbers in any arbitrary base.
+This especially usefull if you work with bits and bytes (binary) or hexadecimal values.
+
+In Smalltalk such a number is written <i>BASE</i><b>r</b><i>NUMBER</i>, i.e. the base an ''r'' followed by the number. Here are some examples:
+
+##### Binary (base 2) #####
+<pre>2r1001</pre>
+since <b>1001</b> is the binary (base 2) representation of 9 in decimal.
+
+Using the #printStringBase: keyword message Smalltalk can also easily tell you the bit combination for any decimal number. 
+<pre>9 printStringBase: 2</pre>
+will also return <b>1001</b> 
+##### Hexadecimal (base 16) #####
+<pre>16rFF</pre>
+which is the same as 255. Since hexadecimal numbers are used very often in computation you can use the #hex method to 
+convert an decimal integer value into its hex representation:
+
+<pre>255 hex</pre> will return 16rFF
+##### Octal (base 8) #####
+
+
+'
+]
+
+{ #category : #'smalltalk tutorial - pages' }
+PharoTutorial class >> smalltalkIntroPart1Page4 [
+	^'
+### Strings ###'
+]
+
+{ #category : #'smalltalk tutorial - pages' }
+PharoTutorial class >> smalltalkIntroPart1Page5 [
+	^'
+### Symbols ###
+
+Smalltalk provides atomic character strings, called "symbols". In Smalltalk, these behave much like strings, with the exception of being read-only (i.e. their character elements cannot be changed). Symbols are always unique and start with the <font color="brown"><b>#</b></font> sign:
+
+<pre>
+#simple
+</pre>
+
+If it contains spaces it can be written like a string - but again starting with a <font color="brown"><b>#</b></font>:
+<pre>
+#''A unique Symbol''
+</pre>
+
+You can create a symbol by sending the message <font color="brown"><b>#asSymbol</b></font> to a String instance: 
+
+<pre>
+''simple string'' asSymbol
+</pre>
+
+which returns the symbol <b>#''simple string''</b>
+
+'
+]
+
+{ #category : #'smalltalk tutorial - pages' }
+PharoTutorial class >> smalltalkIntroPart2Page1 [
 	^'
 Objects and Messages
 -----------------------------------
@@ -301,10 +415,24 @@ Try some more examples:
 3 squared			"receiver object is small integer 3"
 ''abc'' asUppercase	"receiver object is string ''abc'' "
 200 factorial		"sending the message #factorial"	
-</pre>
+''10'' asNumber       "receiver is a string and the returned object a number"
+</pre>'
+]
+
+{ #category : #'smalltalk tutorial - pages' }
+PharoTutorial class >> smalltalkIntroPart2Page2 [
+	^'
+Messages
+---------------
+
+There are exactly three kinds of messages you can send to an object: 
+
+* <font color="purple"><b>Unary messages</b></font>
+* <font color="purple"><b>Binary messages</b></font>
+* <font color="purple"><b>Keyword messages</b></font>
 
 The Smalltalk syntax is easy to remember: an object always comes first and a message follows.
-So first the object as the receiver of the message and then the message you want to send.
+So <b>first</b> the <u>object as the receiver of the message</u> and <b>then</b> <u>the message</u> you want to send.
 
 <img src="http://yuml.me/diagram/scruffy;/class/%5BObject%5D-%5Bnote:You%20can%20send%20messages%20to%20objects.%5D.png"/>
 
@@ -312,33 +440,96 @@ So first the object as the receiver of the message and then the message you want
 ]
 
 { #category : #'smalltalk tutorial - pages' }
-PharoTutorial class >> smalltalkIntroPart1Page2 [
+PharoTutorial class >> smalltalkIntroPart2Page3 [
 	^'
-Messages
----------------
-
-There are exactly three kinds of messages: <font color="red">Unary</font>, <font color="red">binary</font>, and <font color="red">keyword</font>
-
-### Unary ###
+### Unary message ###
  	 
-An unary message is just a word, there are no arguments:
+An unary message is just a word, there are no arguments. So it is a simple message sent to an object:
 
-<pre><code>
-3 negated
-''abcdefg'' vowels
-</code></pre> 
+<pre>3 negated
+</pre> 
 
+So we sent the message #negated to the receiver object 3 (which is an integer object)
+
+Some more examples:
+<pre>''a simple string'' size
+''abcdefg'' vowels      
+$a asInteger
+#(7 7 8) size   
+#(7 7 8) last
+</pre> 
  
+'
+]
+
+{ #category : #'smalltalk tutorial - pages' }
+PharoTutorial class >> smalltalkIntroPart2Page4 [
+	^'
+### Binary message ###
+ 	 
+An binary message is a special character such as <font color="brown"><b>+ - ,</b></font> and it is followed by
+exactly one argument
+
+<pre>3 + 4</pre> 
+
+Note that this arithmetic example in Smalltalk is different from what you may know from other programming languages.
+The two numbers are not equally treated as operands.
+<br/><br/>
+In Smalltalk you send the message <font color="brown"><b>+</b></font> (plus) to an object <b>3</b> with the argument object <b>4</b>. So the number 3 is the receiver of the message while 4 is the argument. There are no explicit operators as you may know from other programming languages - anything is done via message sends.
+<br/><br/>
+In the next example it is the other way around: the number <b>4</b> is the receiver of the plus message together with the argument object <b>3</b>:
+<pre>4 + 3</pre> 
+<br/>
+
+#### Concatenation using binary messages ####
+Another example for a binary message is <font color="brown"><b>,</b></font> (colon) which is for example used to concatenate strings: 
+
+<pre>
+''Hello '' , ''World''	 
+</pre> 
+
+Here the receiver is the string object <b>''Hello''</b>, the message is <font color="brown"><b>,</b></font> and the message argument is another string object <b>''World''</b><br/><br/>
+
+You can even concatenate arrays with the same message:
+
+<pre>
+#(1 2 3) , #(4 5 6 7)
+</pre> 
+
+will return a new array #(1 2 3 4 5 6 7)
+
+#### Comparision using binary messages ####
+So even the comparision of objects is nothing more than sending a binary message:
+
+<pre>
+1 = 3
+</pre> 
+
+So you send the binary message  <font color="brown"><b>=</b></font> to an object and ask if it is equal to the argument object. The object itself will respond with either <font color="blue"><b>true</b></font> or <font color="blue"><b>false</b></font>.
+
+#### Points ####
+An often seen example in Smalltalk books for binary messages is the <font color="brown"><b>@</b></font> message. If you send it to an integer together
+with another integer as argument it will create a Point instance with the receiver as x-coordinate and the argument as y-coordinate.
+
+<pre>
+12 @ 3
+</pre> 
+
+Just inspect this in a workspace and you will get a Point instance with x: 12 and y: 3.
+ 
+  
  
                 
 '
 ]
 
 { #category : #'smalltalk tutorial - pages' }
-PharoTutorial class >> smalltalkIntroPart1Page3 [
+PharoTutorial class >> smalltalkIntroPart2PageX [
 	^'
-Messages
----------------
+Ans. In Chaining, one message can follow on after another. In this case the second message is sent to the object which is the result of the first message.
+           anObject msg1 msg2 msg3 
+In Cascading, each message is followed by a semicolon (;) and another message. In Cascading, subsequent messages are sent to the first receiver.
+           anObject msg1; msg2; msg3 
  
   
  
@@ -407,11 +598,20 @@ PharoTutorial class >> smalltalkTutorialOn: aBuilder [
 	
 	(aBuilder tutorial: #'Introduction to Smalltalk')
 		description: 'An overview and introduction to the Smalltalk programming language';
-		addLesson:  ((aBuilder lesson: #'Part 1: Objects and messages')					  
-						description: 'Introduction to objects and messages';
+		addLesson:  ((aBuilder lesson: #'Part 1: Basic Literals')					  
+						description: 'Introduction to basic literals used in the Smalltalk language';
 						addPage: #smalltalkIntroPart1Page1 from: self;
 						addPage: #smalltalkIntroPart1Page2 from: self;	
 						addPage: #smalltalkIntroPart1Page3 from: self;	
+						addPage: #smalltalkIntroPart1Page4 from: self;	
+						addPage: #smalltalkIntroPart1Page5 from: self;	
+						yourself);		
+		addLesson:  ((aBuilder lesson: #'Part 2: Objects and messages')					  
+						description: 'Introduction to objects and messages';
+						addPage: #smalltalkIntroPart2Page1 from: self;
+						addPage: #smalltalkIntroPart2Page2 from: self;	
+						addPage: #smalltalkIntroPart2Page3 from: self;	
+						addPage: #smalltalkIntroPart2Page4 from: self;	
 						yourself);
 		addLesson:  ((aBuilder lesson: #'Part 10: Further references')					  
 						description: 'Some infos and resources on how to learn the Smalltalk language';
