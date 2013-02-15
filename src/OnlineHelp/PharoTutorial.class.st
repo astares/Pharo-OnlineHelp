@@ -279,8 +279,7 @@ PharoTutorial class >> pharoTutorialOn: aBuilder [
 						yourself);
 		addLesson:  ((aBuilder lesson: #'Learning Pharo')						 
 						description: 'This section explains some useful resources to continue your tour with Pharo. We will tell you about the best places to learn about Pharo and the Smalltalk programming language';
-						addPage: #pharoIntroPage3 from: self;
-						addPage: #pharoIntroPage4 from: self;	
+						addPage: #smalltalkIntroPartXPage1 from: self;
 						yourself)						
 ]
 
@@ -315,18 +314,23 @@ PharoTutorial class >> smalltalkIntroPart1Page2 [
 	^'
 ### Numbers ###
 #### Integers ####
+
 Like in other programming languages you just write a number as it is:
-<pre>1</pre>
+
+	1
 
 If you ask this simple number for its class you will notice that is an instance of SmallInteger (a subclass of Integer).
-<pre>1 class</pre>
+
+	1 class
 
 If you enter a large number the system will treat it using a different class: LargePositiveInteger (also a subclass of Integer).
-<pre>536870912 class</pre> 
+
+	536870912 class 
+
 In Smalltalk (compared to languages like C or Java) you do not have to care about the range or basic/primitive types. So it is very
 easy in Smalltalk to work with large numbers:
 
-<pre>200 factorial</pre>
+	200 factorial
 
 <u>Side note</u>: <i>Integers are widely used in any programming language. Therefore integer objects (in contrast to other objects) are internally optimized for speed by the virtual machine. Nonetheless you will not notice this difference in Smalltalk since they are objects as any other objects in the system.</i>
 '
@@ -337,21 +341,25 @@ PharoTutorial class >> smalltalkIntroPart1Page3 [
 	^'
 ### Numbers ###
 #### Floats ####
+
 Floating point numbers can be represented in Smalltalk very easily:
-<pre>4.564</pre>          "a floating point"</pre>
+
+	4.564          "a floating point"
 
 Note that (unlike other programming languages) Smalltalk does not represent
 the result of a division directly as a Float.
-<pre>1/3</pre>
+
+	1/3
+	
 This will create instead a Fraction instance with numerator 1 and denominator 3.
 
-<pre>(3/4) asFloat</pre>
+	(3/4) asFloat
 
 will convert the fraction object into a Float instance.
 
 Note that you can use <b>e</b> to provide an exponent:
 
-<pre>-2.34e10</pre>
+	-2.34e10
 '
 ]
 
@@ -360,9 +368,10 @@ PharoTutorial class >> smalltalkIntroPart1Page4 [
 	^'
 ### Numbers ###
 #### Scaled Decimal ####
+
 Smalltalk also provides Scaled-decimal constants with a special class <b>ScaledDecimal</b> which does exact computations but truncates comparisons to a given number of decimals. For example
 
-<pre>1.23s4</pre>
+	1.23s4
 
 means "the value 1.23, with four significant decimal digits".
 
@@ -372,7 +381,6 @@ There is a library for [abitrary precision] [1] in Smalltalk and a chapter in [P
 
 [1]: http://code.google.com/p/arbitrary-precision-float/wiki/ArbitraryPrecisionFloatForSqueakAndPharo "abitrary precision"
 [2]: http://pharobooks.gforge.inria.fr/PharoByExampleTwo-Eng/latest/Float.pdf "PBE2 book about using Floats"
-
 '
 ]
 
@@ -381,30 +389,32 @@ PharoTutorial class >> smalltalkIntroPart1Page5 [
 	^'
 ### Characters ###
 #### ASCII characters ####
+
 There is a single class called "Character" whose instances represent a character and in a non-unicode Smalltalk system there are exactly 256 instances of this class since the first 256 characters of the ASCII character set are created uniquely.
 
 Characters can be instantiated using the <b>$</b> operator:
 
-<pre>$a</pre>
+	$a
 
 Since characters are objects you can send messages to them:
-<pre>$a asUppercase</pre>
+
+	$a asUppercase
 
 will return the character $A.
 
 You can also access characters using its (integer) value:
 
-<pre>Character value: 9</pre>
+	Character value: 9
 
 to get the TAB character. You can also return the (ASCII) value of a character object:
 
-<pre>$a asInteger</pre>
+	$a asInteger
 
 #### Unicode characters ####
+
 Modern smalltalk systems such as Pharo have support for Unicode characters.
 
-<pre>Character euro value</pre>
-
+	Character euro value
 '
 ]
 
@@ -422,23 +432,17 @@ PharoTutorial class >> smalltalkIntroPart1Page7 [
 
 Smalltalk provides atomic character strings, called "symbols". In Smalltalk, these behave much like strings, with the exception of being read-only (i.e. their character elements cannot be changed). Symbols are always unique and start with the <font color="brown"><b>#</b></font> sign:
 
-<pre>
-#simple
-</pre>
+	#simple
 
 If it contains spaces it can be written like a string - but again starting with a <font color="brown"><b>#</b></font>:
-<pre>
-#''A unique Symbol''
-</pre>
+
+	#''A unique Symbol''
 
 You can create a symbol by sending the message <font color="brown"><b>#asSymbol</b></font> to a String instance: 
 
-<pre>
-''simple string'' asSymbol
-</pre>
+	''simple string'' asSymbol
 
 which returns the symbol <b>#''simple string''</b>
-
 '
 ]
 
@@ -470,21 +474,19 @@ a word processor).
 
 You can then execute the text with the <b>Print it</b> command which will execute the code and print the result.
 
-<pre>
-1 negated			"Send the message #negated to the small integer 1"
-</pre>
+	1 negated			"Send the message #negated to the small integer 1"
 
 As you will notice the result that is printed is <b>-1</b>.
 
 By evaluating an expression <u>one or more messages are sent</u> to an object (here 1) and this objects <u>responds</u> with either itself or another object (here -1).  
 
 Try some more examples:
-<pre>
-3 squared			"receiver object is small integer 3"
-''abc'' asUppercase	"receiver object is string ''abc'' "
-200 factorial		"sending the message #factorial"	
-''10'' asNumber       "receiver is a string and the returned object a number"
-</pre>'
+
+	3 squared			"receiver object is small integer 3"
+	''abc'' asUppercase	"receiver object is string ''abc'' "
+	200 factorial		"sending the message #factorial"	
+	''10'' asNumber       "receiver is a string and the returned object a number"
+'
 ]
 
 { #category : #'smalltalk tutorial - pages' }
@@ -509,25 +511,22 @@ So <b>first</b> the <u>object as the receiver of the message</u> and <b>then</b>
 
 { #category : #'smalltalk tutorial - pages' }
 PharoTutorial class >> smalltalkIntroPart2Page3 [
-	^'
-### Unary message ###
+	^'### Unary message ###
  	 
 An unary message is just a word, there are no arguments. So it is a simple message sent to an object:
 
-<pre>3 negated
-</pre> 
+	3 negated
+ 
 
 So we sent the message #negated to the receiver object 3 (which is an integer object)
 
 Some more examples:
-<pre>''a simple string'' size
-''abcdefg'' vowels      
-$a asInteger
-#(7 7 8) size   
-#(7 7 8) last
-</pre> 
- 
-'
+
+	''a simple string'' size
+	''abcdefg'' vowels      
+	$a asInteger
+	#(7 7 8) size   
+	#(7 7 8) last'
 ]
 
 { #category : #'smalltalk tutorial - pages' }
@@ -538,57 +537,47 @@ PharoTutorial class >> smalltalkIntroPart2Page4 [
 An binary message is a special character such as <font color="brown"><b>+ - ,</b></font> and it is followed by
 exactly one argument
 
-<pre>3 + 4</pre> 
+	3 + 4 
 
 Note that this arithmetic example in Smalltalk is different from what you may know from other programming languages.
 The two numbers are not equally treated as operands.
-<br/><br/>
+
 In Smalltalk you send the message <font color="brown"><b>+</b></font> (plus) to an object <b>3</b> with the argument object <b>4</b>. So the number 3 is the receiver of the message while 4 is the argument. There are no explicit operators as you may know from other programming languages - anything is done via message sends.
-<br/><br/>
+
 In the next example it is the other way around: the number <b>4</b> is the receiver of the plus message together with the argument object <b>3</b>:
-<pre>4 + 3</pre> 
-<br/>
+
+	4 + 3 
 
 #### Concatenation using binary messages ####
+
 Another example for a binary message is <font color="brown"><b>,</b></font> (colon) which is for example used to concatenate strings: 
 
-<pre>
-''Hello '' , ''World''	 
-</pre> 
+	''Hello '' , ''World''	 
 
 Here the receiver is the string object <b>''Hello''</b>, the message is <font color="brown"><b>,</b></font> and the message argument is another string object <b>''World''</b><br/><br/>
 
 You can even concatenate arrays with the same message:
 
-<pre>
-#(1 2 3) , #(4 5 6 7)
-</pre> 
+	#(1 2 3) , #(4 5 6 7)
 
 will return a new array #(1 2 3 4 5 6 7)
 
 #### Comparision using binary messages ####
+
 So even the comparision of objects is nothing more than sending a binary message:
 
-<pre>
-1 = 3
-</pre> 
+	1 = 3
 
 So you send the binary message  <font color="brown"><b>=</b></font> to an object and ask if it is equal to the argument object. The object itself will respond with either <font color="blue"><b>true</b></font> or <font color="blue"><b>false</b></font>.
 
 #### Points ####
+
 An often seen example in Smalltalk books for binary messages is the <font color="brown"><b>@</b></font> message. If you send it to an integer together
 with another integer as argument it will create a Point instance with the receiver as x-coordinate and the argument as y-coordinate.
 
-<pre>
-12 @ 3
-</pre> 
+	12 @ 3
 
-Just inspect this in a workspace and you will get a Point instance with x: 12 and y: 3.
- 
-  
- 
-                
-'
+Just inspect this in a workspace and you will get a Point instance with x: 12 and y: 3.'
 ]
 
 { #category : #'smalltalk tutorial - pages' }
@@ -646,12 +635,8 @@ Use one of the [free Smalltalk Books][1] that are [available online][1] to learn
 <tr><td><a href="http://pharobyexample.org/"><img src="http://stephane.ducasse.free.fr/FreeBooks/PBE/PharoByExample.png"/></a><td></tr>
 </table>
 <a href="http://rmod.lille.inria.fr/pbe2/"><img style="width: 140px;" src="http://rmod.lille.inria.fr/pbe2/pictures/pbe2.jpg"/></a>
+
 [1]: http://stephane.ducasse.free.fr/FreeBooks.html  "free Smalltalk Books"
-
-
-  
- 
-                
 '
 ]
 
