@@ -8,6 +8,7 @@ Class {
 PharoTutorial class >> ideas [
 
 	"http://lists.squeakfoundation.org/pipermail/squeak-dev/2000-April/013808.html
+	http://www.angelfire.com/tx4/cus/notes/smalltalk.html
 	
 	
 	"
@@ -301,11 +302,20 @@ A literal is a piece of Smalltalk code that the compiler converts immediately to
 ]
 
 { #category : #'smalltalk tutorial - pages' }
+PharoTutorial class >> smalltalkIntroPart1Page10 [
+	^'###  Arrays ###
+#### Array ####
+
+#### Byte Arrays ####
+'
+]
+
+{ #category : #'smalltalk tutorial - pages' }
 PharoTutorial class >> smalltalkIntroPart1Page2 [
 	^'
 ### Numbers ###
 #### Integers ####
-Like in most programming languages you just write the number representing an integer as it is:
+Like in other programming languages you just write a number as it is:
 <pre>1</pre>
 
 If you ask this simple number for its class you will notice that is an instance of SmallInteger (a subclass of Integer).
@@ -326,43 +336,87 @@ easy in Smalltalk to work with large numbers:
 PharoTutorial class >> smalltalkIntroPart1Page3 [
 	^'
 ### Numbers ###
-#### Number syntax ####
-While you usually use numbers in decimal system (base 10) like simple integers:
+#### Floats ####
+Floating point numbers can be represented in Smalltalk very easily:
+<pre>4.564</pre>          "a floating point"</pre>
 
-<pre>42</pre>
+Note that (unlike other programming languages) Smalltalk does not represent
+the result of a division directly as a Float.
+<pre>1/3</pre>
+This will create instead a Fraction instance with numerator 1 and denominator 3.
 
-it is also possible in Smalltalk to work with numbers in any arbitrary base.
-This especially usefull if you work with bits and bytes (binary) or hexadecimal values.
+<pre>(3/4) asFloat</pre>
 
-In Smalltalk such a number is written <i>BASE</i><b>r</b><i>NUMBER</i>, i.e. the base an ''r'' followed by the number. Here are some examples:
+will convert the fraction object into a Float instance.
 
-##### Binary (base 2) #####
-<pre>2r1001</pre>
-since <b>1001</b> is the binary (base 2) representation of 9 in decimal.
+Note that you can use <b>e</b> to provide an exponent:
 
-Using the #printStringBase: keyword message Smalltalk can also easily tell you the bit combination for any decimal number. 
-<pre>9 printStringBase: 2</pre>
-will also return <b>1001</b> 
-##### Hexadecimal (base 16) #####
-<pre>16rFF</pre>
-which is the same as 255. Since hexadecimal numbers are used very often in computation you can use the #hex method to 
-convert an decimal integer value into its hex representation:
-
-<pre>255 hex</pre> will return 16rFF
-##### Octal (base 8) #####
-
-
+<pre>-2.34e10</pre>
 '
 ]
 
 { #category : #'smalltalk tutorial - pages' }
 PharoTutorial class >> smalltalkIntroPart1Page4 [
 	^'
-### Strings ###'
+### Numbers ###
+#### Scaled Decimal ####
+Smalltalk also provides Scaled-decimal constants with a special class <b>ScaledDecimal</b> which does exact computations but truncates comparisons to a given number of decimals. For example
+
+<pre>1.23s4</pre>
+
+means "the value 1.23, with four significant decimal digits".
+
+#### More ####
+
+There is a library for [abitrary precision] [1] in Smalltalk and a chapter in [PBE2 book about using Floats] [2]. 
+
+[1]: http://code.google.com/p/arbitrary-precision-float/wiki/ArbitraryPrecisionFloatForSqueakAndPharo "abitrary precision"
+[2]: http://pharobooks.gforge.inria.fr/PharoByExampleTwo-Eng/latest/Float.pdf "PBE2 book about using Floats"
+
+'
 ]
 
 { #category : #'smalltalk tutorial - pages' }
 PharoTutorial class >> smalltalkIntroPart1Page5 [
+	^'
+### Characters ###
+#### ASCII characters ####
+There is a single class called "Character" whose instances represent a character and in a non-unicode Smalltalk system there are exactly 256 instances of this class since the first 256 characters of the ASCII character set are created uniquely.
+
+Characters can be instantiated using the <b>$</b> operator:
+
+<pre>$a</pre>
+
+Since characters are objects you can send messages to them:
+<pre>$a asUppercase</pre>
+
+will return the character $A.
+
+You can also access characters using its (integer) value:
+
+<pre>Character value: 9</pre>
+
+to get the TAB character. You can also return the (ASCII) value of a character object:
+
+<pre>$a asInteger</pre>
+
+#### Unicode characters ####
+Modern smalltalk systems such as Pharo have support for Unicode characters.
+
+<pre>Character euro value</pre>
+
+'
+]
+
+{ #category : #'smalltalk tutorial - pages' }
+PharoTutorial class >> smalltalkIntroPart1Page6 [
+	^'### Strings ###
+
+'
+]
+
+{ #category : #'smalltalk tutorial - pages' }
+PharoTutorial class >> smalltalkIntroPart1Page7 [
 	^'
 ### Symbols ###
 
@@ -384,6 +438,20 @@ You can create a symbol by sending the message <font color="brown"><b>#asSymbol<
 </pre>
 
 which returns the symbol <b>#''simple string''</b>
+
+'
+]
+
+{ #category : #'smalltalk tutorial - pages' }
+PharoTutorial class >> smalltalkIntroPart1Page8 [
+	^'### Boolean ###
+
+'
+]
+
+{ #category : #'smalltalk tutorial - pages' }
+PharoTutorial class >> smalltalkIntroPart1Page9 [
+	^'### The undefined object ###
 
 '
 ]
@@ -524,6 +592,33 @@ Just inspect this in a workspace and you will get a Point instance with x: 12 an
 ]
 
 { #category : #'smalltalk tutorial - pages' }
+PharoTutorial class >> smalltalkIntroPart2Page5 [
+	^'
+### Keyword message ###
+ 	 
+
+'
+]
+
+{ #category : #'smalltalk tutorial - pages' }
+PharoTutorial class >> smalltalkIntroPart2Page6 [
+	^'
+### Message Chaining ###
+ 	 
+
+'
+]
+
+{ #category : #'smalltalk tutorial - pages' }
+PharoTutorial class >> smalltalkIntroPart2Page7 [
+	^'
+### Cascading messages ###
+ 	 
+
+'
+]
+
+{ #category : #'smalltalk tutorial - pages' }
 PharoTutorial class >> smalltalkIntroPart2PageX [
 	^'
 Ans. In Chaining, one message can follow on after another. In this case the second message is sent to the object which is the result of the first message.
@@ -605,6 +700,11 @@ PharoTutorial class >> smalltalkTutorialOn: aBuilder [
 						addPage: #smalltalkIntroPart1Page3 from: self;	
 						addPage: #smalltalkIntroPart1Page4 from: self;	
 						addPage: #smalltalkIntroPart1Page5 from: self;	
+						addPage: #smalltalkIntroPart1Page6 from: self;	
+						addPage: #smalltalkIntroPart1Page7 from: self;
+						addPage: #smalltalkIntroPart1Page8 from: self;
+						addPage: #smalltalkIntroPart1Page9 from: self;
+						addPage: #smalltalkIntroPart1Page10 from: self;								
 						yourself);		
 		addLesson:  ((aBuilder lesson: #'Part 2: Objects and messages')					  
 						description: 'Introduction to objects and messages';
@@ -612,6 +712,9 @@ PharoTutorial class >> smalltalkTutorialOn: aBuilder [
 						addPage: #smalltalkIntroPart2Page2 from: self;	
 						addPage: #smalltalkIntroPart2Page3 from: self;	
 						addPage: #smalltalkIntroPart2Page4 from: self;	
+						addPage: #smalltalkIntroPart2Page5 from: self;	
+						addPage: #smalltalkIntroPart2Page6 from: self;	
+						addPage: #smalltalkIntroPart2Page7 from: self;							
 						yourself);
 		addLesson:  ((aBuilder lesson: #'Part 10: Further references')					  
 						description: 'Some infos and resources on how to learn the Smalltalk language';
