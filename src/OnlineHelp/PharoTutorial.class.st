@@ -14,6 +14,26 @@ PharoTutorial class >> ideas [
 	"
 ]
 
+{ #category : #'online help tutorial' }
+PharoTutorial class >> onlineHelpIntroPart1Page1 [
+
+	^'
+	
+http://dillinger.io/	
+	'
+]
+
+{ #category : #'online help tutorial' }
+PharoTutorial class >> onlineHelpTutorialOn: aBuilder [
+	<onlineTutorial>
+	
+	(aBuilder tutorial: #'Online Help Tutorial')		 
+		description: 'A short overview of the Pharo environment and tools';
+		addLesson:  ((aBuilder lesson: #'The Pharo Online Help')						 
+						description: 'A short overview of the parts that make up the Pharo system. It should help you understand what is required to run Pharo on your operating system.';
+						addPage: #onlineHelpIntroPart1Page1 from: self)
+]
+
 { #category : #'pharo tutorial - pages' }
 PharoTutorial class >> pharoIntroPage3 [
 	^'
