@@ -18,6 +18,12 @@ PharoTutorial class >> ideas [
 PharoTutorial class >> onlineHelpIntroPart1Page1 [
 
 	^'
+#The Pharo Online Help system
+
+The Pharo help system is a simple framework to help documenting the Pharo system
+and its packages and provide a basic introduction to first time users. 
+
+The help content can be accessed using a typical webbrowser 
 	
 http://dillinger.io/	
 	'
@@ -30,7 +36,7 @@ PharoTutorial class >> onlineHelpTutorialOn: aBuilder [
 	(aBuilder tutorial: #'Online Help Tutorial')		 
 		description: 'A short overview of the Pharo environment and tools';
 		addLesson:  ((aBuilder lesson: #'The Pharo Online Help')						 
-						description: 'A short overview of the parts that make up the Pharo system. It should help you understand what is required to run Pharo on your operating system.';
+						description: 'A short overview of the Pharo online help.';
 						addPage: #onlineHelpIntroPart1Page1 from: self)
 ]
 
