@@ -28,7 +28,7 @@ OHTutorialRequestTest >> testIncompleteURLs [
 	self 
 		deny: (self requestFor: '/tutorials') hasLesson;
 		deny: (self requestFor: '/tutorials?tutorial=Tutorial1&lesson="Lesson1"&page') hasPage;
-		deny: (self requestFor: '/tutorials?tutorial=Tutorial1&lesson="Lesson1"&x') hasPage		
+		assert: (self requestFor: '/tutorials?tutorial=Tutorial1&lesson="Lesson1"') hasPage		
 		
 ]
 
