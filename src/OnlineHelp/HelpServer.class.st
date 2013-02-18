@@ -54,7 +54,7 @@ HelpServer class >> onlineHelpSettingsOn: aBuilder [
 HelpServer class >> port [
 	"Return the port to use for the online help, an Integer"
 	
-	^Port ifNil: [ Port := 8080 ]
+	^Port ifNil: [ Port := self defaultPort ]
 ]
 
 { #category : #settings }

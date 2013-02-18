@@ -13,6 +13,12 @@ HelpServerTests >> dispatcherAvailableFor: contextRoot [
 ]
 
 { #category : #testing }
+HelpServerTests >> testDefaultPort [
+
+	self assert: HelpServer defaultPort = 8080
+]
+
+{ #category : #testing }
 HelpServerTests >> testDelegate [
 
 	|delegate|	
@@ -45,6 +51,21 @@ HelpServerTests >> testPortAvailable [
 HelpServerTests >> testRootContext [
 
 	self dispatcherAvailableFor: '/'
+]
+
+{ #category : #testing }
+HelpServerTests >> testRunning [
+
+	|alreadyRunning response |
+	alreadyRunning := HelpServer isRunning.
+	
+	HelpServer start.
+	
+	#('/' '/api' '/tutorials' '/welcome') do: [:context |  
+		response := ZnEasy get: 'http://localhost:', HelpServer port asString, context.
+		self assert: response statusLine code = 200.
+	].
+	alreadyRunning ifFalse: [ HelpServer stop ]
 ]
 
 { #category : #testing }
