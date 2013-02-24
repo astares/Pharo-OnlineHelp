@@ -39,6 +39,28 @@ The help content can be accessed using a typical webbrowser.
 PharoTutorial class >> onlineHelpIntroPart1Page2 [
 
 	^'
+# Using the online help system
+
+To access the Pharo online help system panel choose "Help"-> "HelpServer" from the world menu.
+Alternatively you can evaluate
+
+	HelpServerPanel open
+	
+Set the port, click on "Start server" and point your browser to http://localhost:8080.
+
+You can also start the server using:
+
+	HelpServer start
+	
+or
+
+	HelpServer stop'
+]
+
+{ #category : #'online help tutorial' }
+PharoTutorial class >> onlineHelpIntroPart1Page3 [
+
+	^'
 #Writing a tutorial
 
 To provide an own tutorial you just implement a class side method with one argument
@@ -73,7 +95,8 @@ PharoTutorial class >> onlineHelpTutorialOn: aBuilder [
 		addLesson:  ((aBuilder lesson: #'The Pharo Online Help')						 
 						description: 'A short overview of the Pharo online help.';
 						addPage: #onlineHelpIntroPart1Page1 from: self;
-						addPage: #onlineHelpIntroPart1Page2 from: self)
+						addPage: #onlineHelpIntroPart1Page2 from: self;
+						addPage: #onlineHelpIntroPart1Page3 from: self)
 ]
 
 { #category : #'pharo tutorial - pages' }
