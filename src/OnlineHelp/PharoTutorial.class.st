@@ -23,10 +23,45 @@ PharoTutorial class >> onlineHelpIntroPart1Page1 [
 The Pharo help system is a simple framework to help documenting the Pharo system
 and its packages and provide a basic introduction to first time users. 
 
-The help content can be accessed using a typical webbrowser 
-	
-http://dillinger.io/	
-	'
+It contains links to useful resources on the internet, an API documentation right
+from the underlying image and a mechanism to create custom documentation/tutorials
+for own packages using [markdown][1] for describing the content.
+
+[Markdown][1] is an easy-to-read, easy-to-write plain text format, that can be converted to structurally valid XHTML (or HTML)
+
+The help content can be accessed using a typical webbrowser. 
+
+[1]: http://daringfireball.net/projects/markdown/  "markdown"
+'
+]
+
+{ #category : #'online help tutorial' }
+PharoTutorial class >> onlineHelpIntroPart1Page2 [
+
+	^'
+#Writing a tutorial
+
+To provide an own tutorial you just implement a class side method with one argument
+marked with the pragma `<onlineTutorial>`. Here is an example:
+
+	buildTutorialOn: aBuilder
+		<onlineTutorial>
+		
+		(aBuilder tutorial: #''My Tutorial'')		 
+			description: ''A simple tutorial to demonstrate things.'';
+				addLesson:  ((aBuilder lesson: #''First Lesson'')						 
+						description: ''A description for the first lesson.'';
+						addPage: #myHelpIntroPart1Page1 from: self;
+						addPage: #myHelpIntroPart1Page2 from: self)
+
+A tutorial containts *lessons* and each lesson provides *pages* which are simple methods returning the markdown string. 
+
+	myHelpIntroPart1Page1
+		"Return a markdown string"
+		^''# My tutorial
+	      ## My subheading''
+
+Have a look at class PharoTutorial for some examples. There are various tools available helping you to write content in markdown notation. We would recommend  http://dillinger.io'
 ]
 
 { #category : #'online help tutorial' }
@@ -34,10 +69,11 @@ PharoTutorial class >> onlineHelpTutorialOn: aBuilder [
 	<onlineTutorial>
 	
 	(aBuilder tutorial: #'Online Help Tutorial')		 
-		description: 'A short overview of the Pharo environment and tools';
+		description: 'A short overview of the Pharo environment and tools.Click on the title to continue.';
 		addLesson:  ((aBuilder lesson: #'The Pharo Online Help')						 
 						description: 'A short overview of the Pharo online help.';
-						addPage: #onlineHelpIntroPart1Page1 from: self)
+						addPage: #onlineHelpIntroPart1Page1 from: self;
+						addPage: #onlineHelpIntroPart1Page2 from: self)
 ]
 
 { #category : #'pharo tutorial - pages' }
