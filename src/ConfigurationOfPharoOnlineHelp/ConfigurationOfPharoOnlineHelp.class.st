@@ -104,7 +104,17 @@ ConfigurationOfPharoOnlineHelp >> baseline10: spec [
 
 { #category : #doIts }
 ConfigurationOfPharoOnlineHelp >> postloadForCore: loader package: packageSpec [
-	(Smalltalk at: #HelpServerPanel) open
+	
+	Workspace openContents: '"To run the help server open Help -> HelpServer from the world menu or evaluate"
+
+    HelpServerPanel open
+
+"Set the port, click on Start server and point your browser to http://localhost:8080
+
+You can also run the server using" HelpServer start
+' label: 'Pharo Online Help'.
+	
+(Smalltalk at: #HelpServerPanel) open.
 ]
 
 { #category : #accessing }
@@ -146,11 +156,25 @@ ConfigurationOfPharoOnlineHelp >> version11: spec [
 	<version: '1.1' imports: #('1.0-baseline')>
 	
 	spec for: #common do: [
-		spec blessing: #'development'.	 
-		spec description: 'first release'. 
+		spec blessing: #'release'.	 
+		spec description: 'second release'. 
 		spec author: 'Torsten Bergmann'.
 		spec timestamp: '02/12/2013 22:00'.
-		spec package: 'OnlineHelp' with: 'OnlineHelp-tbn.51'.
+		spec package: 'OnlineHelp' with: 'OnlineHelp-tbn.57'.
+		spec postLoadDoIt: #postloadForCore:package:
+	]
+]
+
+{ #category : #versions }
+ConfigurationOfPharoOnlineHelp >> version12: spec [
+	<version: '1.2' imports: #('1.0-baseline')>
+	
+	spec for: #common do: [
+		spec blessing: #'development'.	 
+		spec description: 'development '. 
+		spec author: 'Torsten Bergmann'.
+		spec timestamp: '02/12/2013 22:00'.
+		spec package: 'OnlineHelp' with: 'OnlineHelp-tbn.57'.
 		spec postLoadDoIt: #postloadForCore:package:
 	]
 ]
