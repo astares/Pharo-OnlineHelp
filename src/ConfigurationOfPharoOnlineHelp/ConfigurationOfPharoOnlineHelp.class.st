@@ -88,7 +88,7 @@ ConfigurationOfPharoOnlineHelp >> baseline10: spec [
         spec 
 			blessing: #baseline;
 			description: '1.0 baseline for Pharo Online Help';
-			repository: 'http://ss3.gemstone.com/ss/PharoOnlineHelp'.     
+			repository: 'http://smalltalkhub.com/mc/TorstenBergmann/PharoOnlineHelp/main'.     
 			 
        spec package: 'OnlineHelp'.
 				
@@ -160,7 +160,7 @@ ConfigurationOfPharoOnlineHelp >> version11: spec [
 		spec description: 'second release'. 
 		spec author: 'Torsten Bergmann'.
 		spec timestamp: '02/12/2013 22:00'.
-		spec package: 'OnlineHelp' with: 'OnlineHelp-tbn.57'.
+		spec package: 'OnlineHelp' with: 'OnlineHelp-tbn.58'.
 		spec postLoadDoIt: #postloadForCore:package:
 	]
 ]
@@ -174,7 +174,7 @@ ConfigurationOfPharoOnlineHelp >> version12: spec [
 		spec description: 'development '. 
 		spec author: 'Torsten Bergmann'.
 		spec timestamp: '02/12/2013 22:00'.
-		spec package: 'OnlineHelp' with: 'OnlineHelp-tbn.57'.
+		spec package: 'OnlineHelp' with: 'OnlineHelp-tbn.58'.
 		spec postLoadDoIt: #postloadForCore:package:
 	]
 ]
