@@ -50,7 +50,9 @@ OHHelpRequestHandler >> helpNavigationMenu [
                         		<li><a tabindex="-1" href="http://association.pharo.org"><i class="icon-certificate"></i> Pharo Association </a></li>    		
 						<li class="divider"></li>	  
                         		<li><a tabindex="-1" href="http://planet.smalltalk.org">Planet Smalltalk</a></li> 
-				  		<li><a tabindex="-1" href="http://www.world.st">World of Smalltalk</a></li>      		     		
+				  		<li><a tabindex="-1" href="http://www.world.st">World of Smalltalk</a></li> 
+						<li class="divider"></li>	  
+                        		<li><a tabindex="-1" href="http://smalltalkhub.com">Smalltalk Hub</a></li> 				  	      		  		
                      		</ul>
                     	</li>
 			</ul>
