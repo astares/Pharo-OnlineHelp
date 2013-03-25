@@ -41,10 +41,16 @@ OHHelpRequestHandler >> helpNavigationMenu [
                      		</ul>
                     	</li>		
 				<li><a href="/api"><i class="icon-th-list"></i> API</a></li>					
-				<li><a href="http://www.pharocasts.com/"><i class="icon-film"></i> Pharocasts</a></li>	
+				<li class="dropdown">
+					<a id="drop2" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-film"></i> Videos <b class="caret"></b></a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+						<li><a href="http://www.pharocasts.com/">Pharocasts</a></li>	
+						<li><a href="http://www.jarober.com/blog/st4u.ssp">Smalltalk 4u</a></li>	
+					</ul>
+                    	</li>				
                     	<li class="dropdown">
-                      		<a id="drop2" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe"></i> Links <b class="caret"></b></a>
-                      		<ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                      		<a id="drop3" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe"></i> Links <b class="caret"></b></a>
+                      		<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
                         		<li><a tabindex="-1" href="http://www.pharo-project.org"><i class="icon-home"></i></i> Pharo Homepage</a></li>		
                         		<li><a tabindex="-1" href="https://twitter.com/pharoproject"><i class="icon-time"></i> Pharo News</a></li>    
                         		<li><a tabindex="-1" href="http://association.pharo.org"><i class="icon-certificate"></i> Pharo Association </a></li>    		
@@ -58,8 +64,8 @@ OHHelpRequestHandler >> helpNavigationMenu [
 			</ul>
 			<ul class="nav pull-right">
                     	<li class="dropdown pull-right">
-                      		<a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> Community<b class="caret"></b></a>
-                      		<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                      		<a href="#" id="drop4" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> Community<b class="caret"></b></a>
+                      		<ul class="dropdown-menu" role="menu" aria-labelledby="drop4">
                         		<li><a tabindex="-1" href="http://lists.gforge.inria.fr/cgi-bin/mailman/listinfo/pharo-users"><i class="icon-envelope"></i> Pharo-users</a></li>
 			      		<li><a tabindex="-1" href="http://lists.gforge.inria.fr/cgi-bin/mailman/listinfo/pharo-project"><i class="icon-envelope"></i> Pharo-project</a></li>
                         		<li class="divider"></li>
