@@ -134,7 +134,7 @@ ConfigurationOfPharoOnlineHelp >> project [
 ConfigurationOfPharoOnlineHelp >> stable: spec [
 	<symbolicVersion: #'stable'>
 
-	spec for: #'common' version: '1.1'.
+	spec for: #'common' version: '1.2'.
 ]
 
 { #category : #versions }
@@ -170,11 +170,25 @@ ConfigurationOfPharoOnlineHelp >> version12: spec [
 	<version: '1.2' imports: #('1.0-baseline')>
 	
 	spec for: #common do: [
+		spec blessing: #'release'.	 
+		spec description: 'release for Pharo 2.0'. 
+		spec author: 'Torsten Bergmann'.
+		spec timestamp: '02/12/2013 22:00'.
+		spec package: 'OnlineHelp' with: 'OnlineHelp-tbn.59'.
+		spec postLoadDoIt: #postloadForCore:package:
+	]
+]
+
+{ #category : #versions }
+ConfigurationOfPharoOnlineHelp >> version13: spec [
+	<version: '1.3' imports: #('1.0-baseline')>
+	
+	spec for: #common do: [
 		spec blessing: #'development'.	 
 		spec description: 'development '. 
 		spec author: 'Torsten Bergmann'.
-		spec timestamp: '02/12/2013 22:00'.
-		spec package: 'OnlineHelp' with: 'OnlineHelp-tbn.58'.
+		spec timestamp: '03/25/2013 22:00'.
+		spec package: 'OnlineHelp' with: 'OnlineHelp-tbn.59'.
 		spec postLoadDoIt: #postloadForCore:package:
 	]
 ]
