@@ -495,5 +495,100 @@ PharoTutorialCommonPackages class >> packagesTutorialOn: aBuilder [
 		addLesson:  ((aBuilder lesson: #'NeoJSON')						 
 						description: 'A short overview of NeoJSON - a library to handle data in JavaScript Object notation format.';
 						addPage: #neoJSONTutorial1 from: self;
-						addPage: #neoJSONTutorial2 from: self)				
+						addPage: #neoJSONTutorial2 from: self);
+		addLesson:  ((aBuilder lesson: #'Simple Persistence')						 
+						description: 'A short overview of SimplePersistence - a simple approach to persistence usefull for small projects and prototyping.';
+						addPage: #simplePersistenceTutorial1 from: self;
+						addPage: #simplePersistenceTutorial2 from: self)				
+										
+]
+
+{ #category : #documentation }
+PharoTutorialCommonPackages class >> simplePersistenceTutorial1 [
+
+	^'# Simple Persistence
+
+## Introduction
+
+There are several ways to achieve object persistency for an application. One can use relational databases or a full fledged OODBMS. There are also nice NoSQL databases out there that are easy to use.
+
+But in small projects and for doing prototyping it is often very usefull to be able to quickly store a bunch of application objects without much hazzle on setting up a specific environment outside of your Smalltalk image. 
+
+In 2008 this idea of easy persistence lead to the creation of a small package called "SimplePersistence" by Ramon Leon and an according blog post about it called ["Simple Image Based Persistence in Squeak"] [1]. The initial implementation used ReferenceStreams for the serialization.
+
+In 2013 this package has been brought back to [life by Sean P. DeNigris] [2] for future use in Pharo. It now uses Fuel instead of ReferenceStream for the serialization and is aligned with the new FileSystem API in Pharo.
+
+## How to use it
+### The domain model
+We assume you already have a domain model for your application. Here we use a simple domain, a class to represent artists:
+
+  	Object subclass: #Artist
+		instanceVariableNames: ''name''
+		classVariableNames: ''''
+		poolDictionaries: ''''
+		category: ''Killer-App-Core-Model''	 
+
+and one to represent paintings:
+			
+	Object subclass: #Painting
+		instanceVariableNames: ''name artist''
+		classVariableNames: ''''
+		poolDictionaries: ''''
+		category: ''Killer-App-Core-Model''	 		
+			
+We assume you have already written some code to handle domain behavior. 
+
+	Painting named: '''' paintedBy: (Artist named: ''Michelangelo Buonarroti'').
+	 
+### The simple database
+Now load the package "SimplePersistence" from the config browser. You can now create a simple class
+for your database by subclassing *SpFileDatabase*:
+
+	SpFileDatabase subclass: #KillerAppFileDatabase
+		instanceVariableNames: ''''
+		classVariableNames: ''''
+		poolDictionaries: ''''
+		category: ''Killer-App-Persistence''
+		
+You can add a class side instance variable to hold the entities:
+
+	KillerAppFileDatabase class
+		instanceVariableNames: ''artists paintings''
+
+Now implement class side methods in *KillerAppFileDatabase class* to return the set of objects.
+One for artists:
+
+	artists
+		artists ifNil: [ artists := Set new ].
+		^artists
+
+and one for paintings:
+
+	paintings:
+		paintings: ifNil: [ paintings: := Set new ].
+		^paintings
+
+[1]: http://onsmalltalk.com/simple-image-based-persistence-in-squeak/
+[2]: http://forum.world.st/ANN-SimplePersistence-2-0-now-with-fuel-td4667114.html
+'
+]
+
+{ #category : #documentation }
+PharoTutorialCommonPackages class >> simplePersistenceTutorial2 [
+
+	^'# More Infos
+
+## How to load it
+
+In Pharo 2.0 just open the configuration browser from the world menu
+and load the package "SimplePersistence".
+
+
+## Web links
+
+Here are some relevant links:
+
+- <http://onsmalltalk.com/simple-image-based-persistence-in-squeak/> 
+- <http://forum.world.st/ANN-SimplePersistence-2-0-now-with-fuel-td4667114.html>
+'
 ]
