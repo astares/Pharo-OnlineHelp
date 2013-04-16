@@ -1,11 +1,58 @@
 Class {
-	#name : #PharoCommonPackagesTutorial,
+	#name : #PharoTutorialCommonPackages,
 	#superclass : #Object,
 	#category : #'OnlineHelp-Tutorials'
 }
 
 { #category : #documentation }
-PharoCommonPackagesTutorial class >> neoCSVTutorial1 [
+PharoTutorialCommonPackages class >> athensTutorial1 [
+
+	^'# Athens Overview
+
+## Athens Tutorial
+
+There is an in image tutorial for Pharo 2.0 available:
+
+	Gofer it smalltalkhubUser: ''Pharo'' project: ''Athens''; configuration; load.
+
+	ConfigurationOfAthens loadVersion: ''2.0''.
+
+	Gofer it smalltalkhubUser: ''Pharo'' project: ''Athens'';
+ 	    package:''Athens-Tutorial''; load.
+
+	AthensTutorial new openWithSpec.
+
+'
+]
+
+{ #category : #documentation }
+PharoTutorialCommonPackages class >> athensTutorial2 [
+
+	^'# More Infos
+
+## Introduction
+
+Athens is a new graphics API, currently under development. 
+
+## How to load it
+
+In Pharo 2.0 just open the configuration browser from the world menu
+and load the package "NeoCSV".
+
+
+## Web links
+
+Here are some relevant links:
+
+- <http://lists.gforge.inria.fr/pipermail/pharo-project/2013-April/077044.html>
+- <https://code.google.com/p/pharo/wiki/Athens> 
+- <http://www.pharocasts.com/2012/06/athens-and-native-boost-at-work.html>
+
+'
+]
+
+{ #category : #documentation }
+PharoTutorialCommonPackages class >> neoCSVTutorial1 [
 
 	^'# CSV
 
@@ -189,7 +236,7 @@ When there are field accessors or converters, the field count will be set to the
 ]
 
 { #category : #documentation }
-PharoCommonPackagesTutorial class >> neoCSVTutorial2 [
+PharoTutorialCommonPackages class >> neoCSVTutorial2 [
 
 	^'# More Infos
 
@@ -209,7 +256,7 @@ Here are some relevant links:
 ]
 
 { #category : #documentation }
-PharoCommonPackagesTutorial class >> neoJSONTutorial1 [
+PharoTutorialCommonPackages class >> neoJSONTutorial1 [
 
 	^'# JSON
 
@@ -412,7 +459,7 @@ Several benchmarks are included in the unit tests package.'
 ]
 
 { #category : #documentation }
-PharoCommonPackagesTutorial class >> neoJSONTutorial2 [
+PharoTutorialCommonPackages class >> neoJSONTutorial2 [
 
 	^'# More Infos
 
@@ -432,11 +479,15 @@ Here are some relevant links:
 ]
 
 { #category : #tutorials }
-PharoCommonPackagesTutorial class >> packagesTutorialOn: aBuilder [
+PharoTutorialCommonPackages class >> packagesTutorialOn: aBuilder [
 	<onlineTutorial>
 	
 	(aBuilder tutorial: #'Pharo packages')		 
-		description: 'A short overview of common pharo packages.';
+		description: 'A short overview of interesting pharo projects and packages.';
+		addLesson:  ((aBuilder lesson: #'Athens')						 
+						description: 'Athens is a vector graphics package for Pharo.';
+						addPage: #athensTutorial1 from: self;
+						addPage: #athensTutorial2 from: self);
 		addLesson:  ((aBuilder lesson: #'NeoCSV')						 
 						description: 'A short overview of NeoCSV - a library to handle data in comma separated value format.';
 						addPage: #neoCSVTutorial1 from: self;
