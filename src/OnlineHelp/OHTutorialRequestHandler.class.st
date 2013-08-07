@@ -62,7 +62,7 @@ OHTutorialRequestHandler >> prefix [
 { #category : #'rendering-tutorials' }
 OHTutorialRequestHandler >> renderAllTutorialsOn: stream [
 
-	stream << '<br/><div class="container" style="padding-top: 40px;">'.
+	stream << '<br/><div style="padding: 40px 20px 20px 20px">'.
 		
 			stream << '<div class="row">'.
 				"left side navigation"
@@ -70,7 +70,7 @@ OHTutorialRequestHandler >> renderAllTutorialsOn: stream [
 					self renderTutorialSelectionOn: stream.
 				stream << '</div>'.
 				"right side"
-		 		stream << '<div class="span9">'.
+		 		stream << '<div class="span12">'.
 					self renderAvailableTutorialsOn: stream.
 				stream << '</div>'.						
 			stream << '</div>'.
@@ -123,14 +123,14 @@ OHTutorialRequestHandler >> renderLessonOverviewUsing: aContext [
 OHTutorialRequestHandler >> renderLessonUsing: aContext [ 
 	| stream |
 	stream := aContext responseStream. 
-	stream << '<br/><div class="container" style="padding-top: 40px;">'.		
+	stream << '<br/><div style="padding: 40px 20px 20px 20px">'.		
 		stream << '<div class="row">'.
 			"left side navigation"
 	 		stream << '<div class="span3">'.
 				self renderTutorialSelectionOn: stream.
 			stream << '</div>'.
 			"right side"		
-			stream << '<div class="span9">'.
+			stream << '<div class="span12">'.
 				self renderLessonOverviewUsing: aContext.
 			stream << '</div>'.						
 	stream << '</div>'.
@@ -165,7 +165,7 @@ OHTutorialRequestHandler >> renderPage: pageNumber using: aContext [
 OHTutorialRequestHandler >> renderPageUsing: aContext [ 
 	|stream|
 	stream :=aContext responseStream.
-	stream << '<br/><div class="container" style="padding-top: 40px;">'.
+	stream << '<br/><div style="padding: 40px 20px 20px 20px">'.
 		
 			stream << '<div class="row">'.
 				"left side navigation"
@@ -173,7 +173,7 @@ OHTutorialRequestHandler >> renderPageUsing: aContext [
 					self renderTutorialSelectionOn: stream.
 				stream << '</div>'.
 				"right side"
-		 		stream << '<div class="span9">'.
+		 		stream << '<div class="span12">'.
 					self renderLessonOverviewUsing: aContext.
 				 					 
 				stream << '</div>'.						
@@ -196,7 +196,7 @@ OHTutorialRequestHandler >> renderTutorialOverviewUsing: aContext [
 	 
 	tutorial lessons do: [:each |
 		stream << '<h3>'.
-		stream << '<a href="tutorials?tutorial=' << (self decodeAsLink: tutorial title) << '&lesson=' << (self decodeAsLink: each title) << '">' << (each title asString) << '</a></h3>'.
+		stream << '<a href="tutorials?tutorial=' << (self decodeAsLink: tutorial title) << '&lesson=' << (self decodeAsLink: each title) << '">' << (each title asString) << '</a>'.
 		stream << '</h3>'.
 		stream << '<span>' << each description << '</span>' ]
 ]
@@ -228,16 +228,16 @@ OHTutorialRequestHandler >> renderTutorialSelectionOn: stream [
 { #category : #'rendering-tutorials' }
 OHTutorialRequestHandler >> renderTutorialUsing: aContext [  
 
-	| stream aTutorial |
+	| stream |
 	stream := aContext responseStream.
-	stream << '<br/><div class="container" style="padding-top: 40px;">'.		
+	stream << '<br/><div style="padding: 40px 20px 20px 20px">'.		
 	stream << '<div class="row">'.
 		"left side navigation"
 		stream << '<div class="span3">'.
 			self renderTutorialSelectionOn: stream.
 		stream << '</div>'.
 		"right side"
-		stream << '<div class="span9">'.
+		stream << '<div class="span12">'.
 			self renderTutorialOverviewUsing: aContext.
 		stream << '</div>'.						
 	stream << '</div>'.

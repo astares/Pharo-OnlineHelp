@@ -90,8 +90,8 @@ Have a look at class PharoTutorial for some examples. There are various tools av
 PharoTutorial class >> onlineHelpTutorialOn: aBuilder [
 	<onlineTutorial>
 	
-	(aBuilder tutorial: #'Online Help Tutorial')		 
-		description: 'A short overview of the Pharo environment and tools.Click on the title to continue.';
+	(aBuilder tutorial: #'Online Help')		 
+		description: 'A short overview of the Pharo online help.';
 		addLesson:  ((aBuilder lesson: #'The Pharo Online Help')						 
 						description: 'A short overview of the Pharo online help.';
 						addPage: #onlineHelpIntroPart1Page1 from: self;

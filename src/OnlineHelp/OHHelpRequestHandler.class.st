@@ -53,12 +53,14 @@ OHHelpRequestHandler >> helpNavigationMenu [
                       		<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
                         		<li><a tabindex="-1" href="http://www.pharo-project.org"><i class="icon-home"></i></i> Pharo Homepage</a></li>		
                         		<li><a tabindex="-1" href="https://twitter.com/pharoproject"><i class="icon-time"></i> Pharo News</a></li>    
+						<li class="divider"></li>
+						<li><a tabindex="-1" href="http://consortium.pharo.org"><i class="icon-certificate"></i> Pharo Consortium </a></li>	
                         		<li><a tabindex="-1" href="http://association.pharo.org"><i class="icon-certificate"></i> Pharo Association </a></li>    		
 						<li class="divider"></li>	  
                         		<li><a tabindex="-1" href="http://planet.smalltalk.org">Planet Smalltalk</a></li> 
 				  		<li><a tabindex="-1" href="http://www.world.st">World of Smalltalk</a></li> 
 						<li class="divider"></li>	  
-                        		<li><a tabindex="-1" href="http://smalltalkhub.com">Smalltalk Hub</a></li> 				  	      		  		
+                        		<li><a tabindex="-1" href="http://smalltalkhub.com">SmalltalkHub</a></li> 				  	      		  		
                      		</ul>
                     	</li>
 			</ul>
@@ -66,8 +68,8 @@ OHHelpRequestHandler >> helpNavigationMenu [
                     	<li class="dropdown pull-right">
                       		<a href="#" id="drop4" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> Community<b class="caret"></b></a>
                       		<ul class="dropdown-menu" role="menu" aria-labelledby="drop4">
-                        		<li><a tabindex="-1" href="http://lists.gforge.inria.fr/cgi-bin/mailman/listinfo/pharo-users"><i class="icon-envelope"></i> Pharo-users</a></li>
-			      		<li><a tabindex="-1" href="http://lists.gforge.inria.fr/cgi-bin/mailman/listinfo/pharo-project"><i class="icon-envelope"></i> Pharo-project</a></li>
+                        		<li><a tabindex="-1" href="http://lists.pharo.org/mailman/listinfo/pharo-users_lists.pharo.org"><i class="icon-envelope"></i> Pharo users</a></li>
+			      		<li><a tabindex="-1" href="http://lists.pharo.org/mailman/listinfo/pharo-dev_lists.pharo.org"><i class="icon-envelope"></i> Pharo developers</a></li>
                         		<li class="divider"></li>
                         		<li><a tabindex="-1" href="http://www.pharo-project.org/community/how-to-contribute"><i class="icon-user"></i> Contribute</a></li>
                         		<li class="divider"></li>

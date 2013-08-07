@@ -22,7 +22,7 @@ OHWelcomeRequestHandler >> welcomeContent [
 	"Return the content for the welcome page"
 
 	^'<br/>
-	  <div class="container" style="padding-top: 40px;">
+	  <div   style="padding: 40px 40px 40px 40px">
 			<div class="hero-unit">
             		<h1>Welcome</h1>
             		<p>Welcome to Pharo-Project. This online help should give you an introduction on how to use the Pharo open Source Smalltalk system.</p>

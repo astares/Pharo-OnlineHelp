@@ -72,7 +72,7 @@ OHAPIHelpRequestHandler >> renderContentUsing: aContext [
 	| stream |
 	stream :=aContext responseStream.
 	stream << '<br/>'
-		      << '<div class="container" style="padding-top: 40px;">' 
+		      << '<div style="padding: 40px 20px 20px 20px;">' 
 			<< '     <div class="page-header">' 
 			<< '         <h1>' << aContext request itemAsRealClass name << '</h1>' 
       		<< '     </div>'.
@@ -87,7 +87,7 @@ OHAPIHelpRequestHandler >> renderContentUsing: aContext [
 	        stream << '</div>'.
 	
 		"right side"
-		stream << '<div class="span9">'.
+		stream << '<div class="span12">'.
 			self renderActionUsing: aContext.
 		stream << '</div>'.		
 			 				
