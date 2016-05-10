@@ -1,3 +1,6 @@
+"
+Configuration of Pharo Online Help
+"
 Class {
 	#name : #ConfigurationOfPharoOnlineHelp,
 	#superclass : #Object,
@@ -23,6 +26,36 @@ ConfigurationOfPharoOnlineHelp class >> bootstrapPackage: aString from: aPath [
 			version := reader version.
 			version load.
 			version workingCopy repositoryGroup addRepository: repository]
+]
+
+{ #category : #catalog }
+ConfigurationOfPharoOnlineHelp class >> catalogChangeLog [
+	"Returns a paragraph describing the most important changes in the configuration class."
+	^ ''
+]
+
+{ #category : #catalog }
+ConfigurationOfPharoOnlineHelp class >> catalogContactInfo [
+	"Returns a paragraph describing contact information such as email, mailing lists and website."
+	^ 'You can contact the author on the Pharo developer mailinglist http://lists.pharo.org'
+]
+
+{ #category : #catalog }
+ConfigurationOfPharoOnlineHelp class >> catalogDescription [
+	"Returns a paragraph describing the project"
+	^ 'Implementation of an online based help system.'
+]
+
+{ #category : #catalog }
+ConfigurationOfPharoOnlineHelp class >> catalogKeyClassesAndExample [
+	"Returns a paragraph or more describing the key classes of your project. You can use Pillar/Pier syntax to layout out the text i.e., ==Code== and - for bullet."
+	^ ''
+]
+
+{ #category : #catalog }
+ConfigurationOfPharoOnlineHelp class >> catalogKeywords [
+	"Returns an array of symbols"
+	^ #(help online web) 
 ]
 
 { #category : #private }
@@ -102,17 +135,83 @@ ConfigurationOfPharoOnlineHelp >> baseline10: spec [
 
 ]
 
+{ #category : #baselines }
+ConfigurationOfPharoOnlineHelp >> baseline20: spec [
+	<version: '2.0-baseline'>
+
+	spec for: #'common' do: [
+		spec blessing: #'baseline'.
+		spec project: 'WebBrowser' with: [
+				spec
+					className: #ConfigurationOfWebBrowser;
+					versionString: #'stable';
+					repository: 'http://smalltalkhub.com/mc/TorstenBergmann/WebBrowser/main/' ].
+		spec 
+			package: #'OnlineHelp-Core';
+			package: #'OnlineHelp-Tests-Core' with: [
+				spec requires: #(#'OnlineHelp-Core' ). ];
+			package: #'OnlineHelp-Tools' with: [
+				spec requires: #(#'OnlineHelp-Core' 'WebBrowser' ). ];
+			package: #'OnlineHelp-Tutorials' with: [
+				spec requires: #(#'OnlineHelp-Core' ). ].
+		spec 
+			group: 'Core' with: #(#'OnlineHelp-Core' );
+			group: 'Tests' with: #(#'OnlineHelp-Tests-Core' );
+			group: 'Tools' with: #(#'OnlineHelp-Tools' );
+			group: 'Tutorials' with: #(#'OnlineHelp-Tutorials' );
+			group: 'all' with: #('Core' 'Tutorials' 'Tools' 'Tests' );
+			group: 'default' with: #('all' ). ].
+
+]
+
+{ #category : #baselines }
+ConfigurationOfPharoOnlineHelp >> baseline21: spec [
+	<version: '2.1-baseline'>
+
+	spec for: #'common' do: [
+		spec blessing: #'baseline'.
+		spec project: 'WebBrowser' with: [
+				spec
+					className: #ConfigurationOfWebBrowser;
+					versionString: #'stable';
+					repository: 'http://smalltalkhub.com/mc/TorstenBergmann/WebBrowser/main/' ].
+		spec 
+			package: #'OnlineHelp-Core';
+			package: #'OnlineHelp-Tests-Core' with: [
+				spec requires: #(#'OnlineHelp-Core' ). ];
+			package: #'OnlineHelp-Tools' with: [
+				spec requires: #(#'OnlineHelp-Core' 'WebBrowser' ). ];
+			package: #'OnlineHelp-Tutorials' with: [
+				spec requires: #(#'OnlineHelp-Core' ). ].
+		spec 
+			group: 'Core' with: #(#'OnlineHelp-Core' );
+			group: 'Tests' with: #(#'OnlineHelp-Tests-Core' );
+			group: 'Tools' with: #(#'OnlineHelp-Tools' );
+			group: 'Tutorials' with: #(#'OnlineHelp-Tutorials' );
+			group: 'all' with: #('Core' 'Tutorials' 'Tools' 'Tests' );
+			group: 'default' with: #('all' ). ].
+
+]
+
+{ #category : #'symbolic versions' }
+ConfigurationOfPharoOnlineHelp >> development: spec [
+	<symbolicVersion: #'development'>
+
+	spec for: #'common' version: '2.1-baseline'.
+
+]
+
 { #category : #doIts }
 ConfigurationOfPharoOnlineHelp >> postloadForCore: loader package: packageSpec [
 	
 	Workspace openContents: '"To run the help server open Help -> HelpServer from the world menu or evaluate"
 
-    HelpServerPanel open
+    HelpServerPanel open.
 
 "Set the port, click on Start server and point your browser to http://localhost:8080
 
 You can also run the server using" HelpServer start
-' label: 'Pharo Online Help'.
+' .
 	
 (Smalltalk at: #HelpServerPanel) open.
 ]
@@ -134,7 +233,11 @@ ConfigurationOfPharoOnlineHelp >> project [
 ConfigurationOfPharoOnlineHelp >> stable: spec [
 	<symbolicVersion: #'stable'>
 
-	spec for: #'common' version: '1.4'.
+	spec
+		for: #common version: '2.0';
+		for: #'pharo4.x' version: '1.4';
+		for: #'pharo3.x' version: '1.4'
+
 ]
 
 { #category : #versions }
@@ -205,4 +308,22 @@ ConfigurationOfPharoOnlineHelp >> version14: spec [
 		spec package: 'OnlineHelp' with: 'OnlineHelp-TorstenBergmann.64'.
 		spec postLoadDoIt: #postloadForCore:package:
 	]
+]
+
+{ #category : #versions }
+ConfigurationOfPharoOnlineHelp >> version20: spec [
+	<version: '2.0' imports: #('2.0-baseline' )>
+
+	spec for: #'common' do: [
+		spec blessing: #'stable'.
+		spec description: 'version 2.0'.
+		spec author: 'TorstenBergmann'.
+		spec timestamp: '5/10/2016 18:00'.
+		spec project: 'WebBrowser' with: #'stable'.
+		spec 
+			package: #'OnlineHelp-Core' with: 'OnlineHelp-Core-TorstenBergmann.1';
+			package: #'OnlineHelp-Tests-Core' with: 'OnlineHelp-Tests-Core-TorstenBergmann.1';
+			package: #'OnlineHelp-Tools' with: 'OnlineHelp-Tools-TorstenBergmann.1';
+			package: #'OnlineHelp-Tutorials' with: 'OnlineHelp-Tutorials-TorstenBergmann.1'. ].
+
 ]
