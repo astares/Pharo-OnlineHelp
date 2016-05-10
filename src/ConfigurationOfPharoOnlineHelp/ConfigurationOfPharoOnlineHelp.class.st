@@ -141,6 +141,7 @@ ConfigurationOfPharoOnlineHelp >> baseline20: spec [
 
 	spec for: #'common' do: [
 		spec blessing: #'baseline'.
+		spec repository: 'http://smalltalkhub.com/mc/TorstenBergmann/PharoOnlineHelp/main/'.
 		spec project: 'WebBrowser' with: [
 				spec
 					className: #ConfigurationOfWebBrowser;
@@ -170,6 +171,7 @@ ConfigurationOfPharoOnlineHelp >> baseline21: spec [
 
 	spec for: #'common' do: [
 		spec blessing: #'baseline'.
+		spec repository: 'http://smalltalkhub.com/mc/TorstenBergmann/PharoOnlineHelp/main/'.
 		spec project: 'WebBrowser' with: [
 				spec
 					className: #ConfigurationOfWebBrowser;
@@ -321,9 +323,10 @@ ConfigurationOfPharoOnlineHelp >> version20: spec [
 		spec timestamp: '5/10/2016 18:00'.
 		spec project: 'WebBrowser' with: #'stable'.
 		spec 
-			package: #'OnlineHelp-Core' with: 'OnlineHelp-Core-TorstenBergmann.1';
+			package: #'OnlineHelp-Core' with: 'OnlineHelp-Core-TorstenBergmann.2';
 			package: #'OnlineHelp-Tests-Core' with: 'OnlineHelp-Tests-Core-TorstenBergmann.1';
 			package: #'OnlineHelp-Tools' with: 'OnlineHelp-Tools-TorstenBergmann.1';
 			package: #'OnlineHelp-Tutorials' with: 'OnlineHelp-Tutorials-TorstenBergmann.1'. ].
+		spec postLoadDoIt: #postloadForCore:package:
 
 ]
