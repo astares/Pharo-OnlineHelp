@@ -234,12 +234,10 @@ ConfigurationOfPharoOnlineHelp >> project [
 { #category : #'symbolic versions' }
 ConfigurationOfPharoOnlineHelp >> stable: spec [
 	<symbolicVersion: #'stable'>
-
-	spec
-		for: #common version: '2.0';
-		for: #'pharo4.x' version: '1.4';
-		for: #'pharo3.x' version: '1.4'
-
+	
+	spec for: #common version: '2.0'.
+	spec for: #'pharo3.x' version: '1.4'.
+	spec for: #'pharo4.x' version: '1.4'
 ]
 
 { #category : #versions }
@@ -326,7 +324,9 @@ ConfigurationOfPharoOnlineHelp >> version20: spec [
 			package: #'OnlineHelp-Core' with: 'OnlineHelp-Core-TorstenBergmann.2';
 			package: #'OnlineHelp-Tests-Core' with: 'OnlineHelp-Tests-Core-TorstenBergmann.1';
 			package: #'OnlineHelp-Tools' with: 'OnlineHelp-Tools-TorstenBergmann.1';
-			package: #'OnlineHelp-Tutorials' with: 'OnlineHelp-Tutorials-TorstenBergmann.1'. ].
-		spec postLoadDoIt: #postloadForCore:package:
+			package: #'OnlineHelp-Tutorials' with: 'OnlineHelp-Tutorials-TorstenBergmann.1'.
+		spec postLoadDoIt: #postloadForCore:package:	
+	 ].
+		
 
 ]
