@@ -36,8 +36,9 @@ OHHelpRequestHandler >> helpNavigationMenu [
 				<li class="dropdown">
                       		<a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-book"></i> Books<b class="caret"></b></a>
                       		<ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-                        		<li><a tabindex="-1" href="http://pharobyexample.org/">Pharo by Example</a></li>
-                        		<li><a tabindex="-1" href="http://rmod.lille.inria.fr/pbe2/">Pharo by Example 2</a></li>		
+                        		<li><a tabindex="-1" href="http://files.pharo.org/books/pharo-by-example/">Pharo by Example</a></li>
+                        		<li><a tabindex="-1" href="http://files.pharo.org/books/deep-into-pharo/">Deep into Pharo</a></li>		
+                        		<li><a tabindex="-1" href="http://files.pharo.org/books/enterprise-pharo/">Enterprise Pharo</a></li>		
 						<li class="divider"></li>
 			      		<li><a tabindex="-1" href="http://book.pharo-project.org">Collaborative Active Book</a></li>                        		 						<li class="divider"></li>
 			      		<li><a tabindex="-1" href="http://stephane.ducasse.free.fr/FreeBooks.html">Free Smalltalk Books</a></li>                        		 
@@ -47,14 +48,15 @@ OHHelpRequestHandler >> helpNavigationMenu [
 				<li class="dropdown">
 					<a id="drop2" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-film"></i> Videos <b class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
-						<li><a href="http://www.pharocasts.com/">Pharocasts</a></li>	
+						<li><a href="https://vimeo.com/tag:pharocasts">Pharocasts</a></li>	
 						<li><a href="http://www.jarober.com/blog/st4u.ssp">Smalltalk 4u</a></li>	
+						<li><a href="https://www.youtube.com/watch?v=zpLY7uQnPsg&list=PLxHyfVK9FXA0Cca9LA7RNNxb8RN5ghBJN">Pharo 5 Tools</a></li>	
 					</ul>
                     	</li>				
                     	<li class="dropdown">
                       		<a id="drop3" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe"></i> Links <b class="caret"></b></a>
                       		<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-                        		<li><a tabindex="-1" href="http://www.pharo-project.org"><i class="icon-home"></i></i> Pharo Homepage</a></li>		
+                        		<li><a tabindex="-1" href="http://www.pharo.org"><i class="icon-home"></i></i> Pharo Homepage</a></li>		
                         		<li><a tabindex="-1" href="https://twitter.com/pharoproject"><i class="icon-time"></i> Pharo News</a></li>    
 						<li class="divider"></li>
 						<li><a tabindex="-1" href="http://consortium.pharo.org"><i class="icon-certificate"></i> Pharo Consortium </a></li>	
@@ -74,12 +76,12 @@ OHHelpRequestHandler >> helpNavigationMenu [
                         		<li><a tabindex="-1" href="http://lists.pharo.org/mailman/listinfo/pharo-users_lists.pharo.org"><i class="icon-envelope"></i> Pharo users</a></li>
 			      		<li><a tabindex="-1" href="http://lists.pharo.org/mailman/listinfo/pharo-dev_lists.pharo.org"><i class="icon-envelope"></i> Pharo developers</a></li>
                         		<li class="divider"></li>
-                        		<li><a tabindex="-1" href="http://www.pharo-project.org/community/how-to-contribute"><i class="icon-user"></i> Contribute</a></li>
+                        		<li><a tabindex="-1" href="http://pharo.org/contribute"><i class="icon-user"></i> Contribute</a></li>
                         		<li class="divider"></li>
-						<li><a tabindex="-1" href="http://bugs.pharo-project.org"><i class="icon-tasks"></i> Issue tracker</a></li>
+						<li><a tabindex="-1" href="http://bugs.pharo.org"><i class="icon-tasks"></i> Issue tracker</a></li>
 						<li class="divider"></li>		                      	
-                        		<li><a tabindex="-1" href="http://ci.pharo-project.org"><i class="icon-signal"></i> CI Server</a></li>
-	                  		<li><a tabindex="-1" href="http://pharo.gforge.inria.fr/ci/"><i class="icon-download"></i> CI Downloads</a></li>				
+                        		<li><a tabindex="-1" href="http://ci.pharo.org"><i class="icon-signal"></i> CI Server</a></li>
+	                  		<li><a tabindex="-1" href="https://ci.inria.fr/pharo-contribution/"><i class="icon-download"></i> CI Contributions</a></li>				
                       		</ul>
                     	</li>
                   </ul>                   
