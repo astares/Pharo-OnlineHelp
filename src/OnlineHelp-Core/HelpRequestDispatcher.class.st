@@ -1,10 +1,13 @@
+"
+Request dispatcher
+"
 Class {
 	#name : #HelpRequestDispatcher,
 	#superclass : #Object,
 	#instVars : [
 		'dispatchMap'
 	],
-	#category : #'OnlineHelp-Core-Engine'
+	#category : #'OnlineHelp-Core-Web'
 }
 
 { #category : #building }
@@ -16,11 +19,10 @@ HelpRequestDispatcher >> buildDispatchMap [
 		map: '/' to: 'welcome';				
 		map: 'favicon.ico' to: #favicon:.
 		
-	OHHelpRequestHandler allSubclassesDo: [:each |
-		Transcript show: each printString.
+	OHRequestHandler allSubclassesDo: [:each |
+		each isAbstract ifFalse: [ 
 		handler := each new.
-		self map: handler prefix  to: handler
-	]
+		self map: handler prefix  to: handler]]
 ]
 
 { #category : #accessing }
@@ -41,7 +43,7 @@ HelpRequestDispatcher >> favicon: request [
 HelpRequestDispatcher >> generateHelp [
 
 	^ String streamContents: [ :stream |
-		stream << ZnConstants standardHtmlDocType.
+		stream << '<!DOCTYPE html>'.
 		stream << '<html><head><title>Pharo Help</title><link rel="shortcut icon" href="/favicon.ico"/>'.
 		stream << '<style type="text/css"> '.
 		stream << HelpResourceLibrary helpCss.

@@ -1,3 +1,6 @@
+"
+A builder to build tutorials
+"
 Class {
 	#name : #OHTutorialBuilder,
 	#superclass : #Object,
@@ -5,7 +8,7 @@ Class {
 		'tutorials',
 		'tutorialMap'
 	],
-	#category : #'OnlineHelp-Core-Engine'
+	#category : #'OnlineHelp-Core-Model'
 }
 
 { #category : #private }

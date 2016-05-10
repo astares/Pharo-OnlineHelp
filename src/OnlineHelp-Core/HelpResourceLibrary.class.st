@@ -1,7 +1,10 @@
+"
+Provide resources like a favicon
+"
 Class {
 	#name : #HelpResourceLibrary,
 	#superclass : #Object,
-	#category : #'OnlineHelp-Core-Engine'
+	#category : #'OnlineHelp-Core-Web'
 }
 
 { #category : #icons }

@@ -1,10 +1,13 @@
+"
+A tutorial
+"
 Class {
 	#name : #OHTutorial,
 	#superclass : #OHTutorialItem,
 	#instVars : [
 		'lessonMap'
 	],
-	#category : #'OnlineHelp-Core-Engine'
+	#category : #'OnlineHelp-Core-Model'
 }
 
 { #category : #accessing }

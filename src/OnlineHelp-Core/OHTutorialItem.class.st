@@ -1,3 +1,6 @@
+"
+Common superclass for tutorial items
+"
 Class {
 	#name : #OHTutorialItem,
 	#superclass : #Object,
@@ -5,7 +8,7 @@ Class {
 		'title',
 		'description'
 	],
-	#category : #'OnlineHelp-Core-Engine'
+	#category : #'OnlineHelp-Core-Model'
 }
 
 { #category : #'instance creation' }

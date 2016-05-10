@@ -1,3 +1,6 @@
+"
+A general superclass for help specific web requests
+"
 Class {
 	#name : #OHHelpRequest,
 	#superclass : #Object,
@@ -5,7 +8,7 @@ Class {
 		'httpRequest',
 		'prefix'
 	],
-	#category : #'OnlineHelp-Core-Engine'
+	#category : #'OnlineHelp-Core-Web'
 }
 
 { #category : #'instance creation' }
@@ -20,7 +23,8 @@ OHHelpRequest class >> fromHTTPRequest: anHTTPRequest [
 { #category : #'private-initialization' }
 OHHelpRequest >> initFromHTTPRequest: anHTTPRequest [
 	httpRequest := anHTTPRequest.
-	prefix := anHTTPRequest uri segments first.
+	anHTTPRequest uri segments ifNotNil: [ prefix := anHTTPRequest uri segments first. ]
+	
 	 
 ]
 

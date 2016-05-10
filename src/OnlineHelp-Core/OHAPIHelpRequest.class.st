@@ -1,7 +1,10 @@
+"
+A request for help on API
+"
 Class {
 	#name : #OHAPIHelpRequest,
 	#superclass : #OHHelpRequest,
-	#category : #'OnlineHelp-Core-Engine'
+	#category : #'OnlineHelp-Core-Web'
 }
 
 { #category : #'accessing-parts' }
@@ -36,4 +39,9 @@ OHAPIHelpRequest >> hasItem [
 { #category : #'accessing-parts' }
 OHAPIHelpRequest >> item [
 	^httpRequest uri queryAt: 'item' ifAbsent: self defaultItem
+]
+
+{ #category : #'accessing-parts' }
+OHAPIHelpRequest >> itemAsRealClass [
+	^Smalltalk at: self item asSymbol
 ]

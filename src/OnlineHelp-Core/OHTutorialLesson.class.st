@@ -1,10 +1,13 @@
+"
+A lesson in a tutorial
+"
 Class {
 	#name : #OHTutorialLesson,
 	#superclass : #OHTutorialItem,
 	#instVars : [
 		'pageSelectors'
 	],
-	#category : #'OnlineHelp-Core-Engine'
+	#category : #'OnlineHelp-Core-Model'
 }
 
 { #category : #accessing }

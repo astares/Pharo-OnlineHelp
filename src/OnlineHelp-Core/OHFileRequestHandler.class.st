@@ -1,7 +1,10 @@
+"
+Request handler for files
+"
 Class {
 	#name : #OHFileRequestHandler,
-	#superclass : #OHHelpRequestHandler,
-	#category : #'OnlineHelp-Core-Engine'
+	#superclass : #OHRequestHandler,
+	#category : #'OnlineHelp-Core-Web'
 }
 
 { #category : #uploads }
@@ -3694,7 +3697,7 @@ OHFileRequestHandler >> cssbootstrapminCssContent [
 { #category : #'request handling' }
 OHFileRequestHandler >> handleRequest: aRequest [
 	"quick hack, group and use a dictionary later"
-	
+	 
 	(#('files//' 'files') includes: aRequest uri path)   ifTrue: [^ZnResponse unauthorized: 'No permisson'].
 	(aRequest uri path = 'files/css/bootstrap.min.css') ifTrue: [^self cssResponseFor: #cssbootstrapminCssContent ].
 	(aRequest uri path = 'files/js/bootstrap.min.js') ifTrue: [^self javaScriptResponseFor: #jsbootstrapminJs ].
@@ -3754,4 +3757,11 @@ OHFileRequestHandler >> pharoPngContent [
 { #category : #defaults }
 OHFileRequestHandler >> prefix [
 	^'files'
+]
+
+{ #category : #'request handling' }
+OHFileRequestHandler >> respondWith: content usingMIMEType: mimeType [ 
+	| entity |
+	entity := ZnEntity with: content type: mimeType. 
+	^ ZnResponse ok: entity
 ]

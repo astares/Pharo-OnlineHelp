@@ -1,7 +1,10 @@
+"
+A web request for a tutorial
+"
 Class {
 	#name : #OHTutorialRequest,
 	#superclass : #OHHelpRequest,
-	#category : #'OnlineHelp-Core-Engine'
+	#category : #'OnlineHelp-Core-Web'
 }
 
 { #category : #testing }
@@ -26,7 +29,7 @@ OHTutorialRequest >> lesson [
 
 { #category : #'accessing parts' }
 OHTutorialRequest >> page [
-	^httpRequest uri queryAt: 'page' ifAbsent: nil
+	^httpRequest uri queryAt: 'page' ifAbsent: 1
 ]
 
 { #category : #'accessing parts' }
