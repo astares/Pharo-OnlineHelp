@@ -13,7 +13,7 @@ Class {
 
 { #category : #private }
 OHTutorialBuilder class >> allTutorialDescriptions [
-	 ^(PragmaCollector filter: [:pragma | #onlineTutorial = pragma keyword]) reset collected
+	 ^(PragmaCollector filter: [:pragma | #onlineTutorial = pragma key ]) reset collected
 
 ]
 
