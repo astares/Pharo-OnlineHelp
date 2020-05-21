@@ -50,9 +50,9 @@ OHTutorialBuilder class >> tutorialWithName: aName [
 
 { #category : #building }
 OHTutorialBuilder >> build [
-	self class allTutorialDescriptions do: [:each |
-		each methodClass theNonMetaClass perform: each selector with: self
-	]
+	self class allTutorialDescriptions
+		do:
+			[ :each | each methodClass instanceSide perform: each method selector with: self ]
 ]
 
 { #category : #'initialize-release' }
