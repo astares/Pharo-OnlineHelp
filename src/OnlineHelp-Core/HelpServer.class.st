@@ -11,6 +11,14 @@ Class {
 	#category : #'OnlineHelp-Core-Server'
 }
 
+{ #category : #running }
+HelpServer class >> browse [
+	"Browse the online help server."
+	<script>
+	
+	WebBrowser openOn: 'http://localhost:', self port asString      
+]
+
 { #category : #accessing }
 HelpServer class >> defaultPort [
 	"Returns the default port "
@@ -83,10 +91,8 @@ HelpServer class >> server [
 
 { #category : #running }
 HelpServer class >> start [
-	"Start the online help server.
-	
-		HelpServer start
-	"
+	"Start the online help server."
+	<script>
 	self isRunning ifTrue: [^self server].
 	^self server
 		delegate: self dispatcherClass new;
@@ -96,10 +102,8 @@ HelpServer class >> start [
 
 { #category : #running }
 HelpServer class >> stop [
-	"Stop the online help server.
-	
-		HelpServer stop
-	"
+	"Stop the online help server."
+	<script>
 	
 	self isRunning ifFalse: [^self server].	
 	^self server
